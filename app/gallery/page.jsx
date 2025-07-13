@@ -1,13 +1,23 @@
 'use client';
-
-import React, { useState } from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
 
-// Gallery Data (файлы по папкам и по порядку)
+// ----- Меню
+const menuItems = [
+  { label: 'Home', href: '/', type: 'link' },
+  { label: 'Our Sphynxes', href: '/sphynxes', type: 'link' },
+  { label: 'Gallery', href: '/gallery', type: 'link' },
+  { label: 'Breed Info', href: '/breed-info', type: 'link' },
+  { label: 'Contact', id: 'contact', type: 'scroll' },
+];
+
+// ----- Галерея
 const galleryBlocks = [
   {
     title: 'Bullochka — Our King',
@@ -130,32 +140,129 @@ const slides = galleryBlocks.flatMap(block =>
   )
 );
 
-// Смещение для глобального индекса лайтбокса
 let cursor = 0;
 const offsets = galleryBlocks.map(block => {
   const start = cursor; cursor += block.media.length; return start;
 });
 
 export default function Gallery() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('');
+
+  // ---- Анимация появления блоков при скролле
+  useEffect(() => {
+    const blocks = document.querySelectorAll('.anim-scroll');
+    const showOnScroll = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-up');
+        }
+      });
+    };
+    const observer = new window.IntersectionObserver(showOnScroll, {
+      threshold: 0.18,
+    });
+    blocks.forEach((block) => observer.observe(block));
+    return () => blocks.forEach((block) => observer.unobserve(block));
+  }, []);
+
+  // ---- Активная секция для меню (scroll и route)
+  useEffect(() => {
+    if (pathname !== '/gallery') return; // Только если эта страница
+    const ids = ['contact'];
+    const handler = () => {
+      let current = '';
+      for (let id of ids) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < 120) current = id;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handler);
+    handler();
+    return () => window.removeEventListener('scroll', handler);
+  }, [pathname]);
+
+  // --- Исправление полноэкранного видео (object-fit)
+  useEffect(() => {
+    function handleFullscreenChange() {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        if (document.fullscreenElement === video) {
+          video.classList.remove('object-cover');
+          video.classList.add('object-contain');
+          video.style.background = "#111";
+        } else {
+          video.classList.remove('object-contain');
+          video.classList.add('object-cover');
+          video.style.background = "";
+        }
+      });
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // ---- Скролл до контактов (для Contact в меню)
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      window.scrollTo({
+        top: el.getBoundingClientRect().top + window.pageYOffset - 60,
+        behavior: 'smooth',
+      });
+      setActiveSection(id);
+    }
+  }
 
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
-        <title>Gallery | Nude'n Satin - Canadian Sphynx Cattery</title>
+        <title>Gallery | Nude&apos;n Satin - Canadian Sphynx Cattery</title>
       </Head>
+      {/* --- МЕНЮ --- */}
       <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
-        <div className="flex items-center space-x-4 mb-2 md:mb-0">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-          <span className="text-2xl font-bold">Nude'n Satin</span>
-        </div>
+        <Link href="/" className="flex items-center space-x-4 mb-2 md:mb-0 cursor-pointer group">
+          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto group-hover:scale-105 transition" />
+          <span className="text-2xl font-bold group-hover:text-[#ac824e] transition">Nude&apos;n Satin</span>
+        </Link>
         <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-57 mt-2 md:mt-0">
-          <Link href="/">Home</Link>
-          <Link href="/sphynxes">Our Sphynxes</Link>
-          <Link href="/gallery" className="text-[#ac824e] underline">Gallery</Link>
-          <Link href="/breed-info">Breed Info</Link>
-          <Link href="#contact">Contact</Link></nav>
+          {menuItems.map((item, idx) =>
+            item.type === 'link' ? (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={
+                  (pathname === item.href
+                    ? "underline text-[#ac824e]"
+                    : "hover:underline") +
+                  " bg-transparent px-2 py-1 rounded transition"
+                }
+                aria-current={pathname === item.href ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <button
+                key={item.label}
+                onClick={() => scrollToId(item.id)}
+                className={
+                  (activeSection === item.id
+                    ? "underline text-[#ac824e]"
+                    : "hover:underline") +
+                  " bg-transparent px-2 py-1 rounded transition"
+                }
+              >
+                {item.label}
+              </button>
+            )
+          )}
+        </nav>
         <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
           <a href="#" aria-label="Instagram"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
           <a href="#" aria-label="Facebook"><img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6" /></a>
@@ -164,15 +271,14 @@ export default function Gallery() {
       </header>
 
       <main className="max-w-7xl mx-auto py-10 px-4">
-        <h1 className="text-4xl font-bold text-center mb-12">Full Gallery</h1>
+        <h1 className="text-4xl font-bold text-center mb-12 anim-scroll opacity-0 transition-all duration-700">Full Gallery</h1>
         {galleryBlocks.map((block, bi) => (
-          <section key={bi} className="mb-16">
+          <section key={bi} className="mb-16 anim-scroll opacity-0 transition-all duration-700">
             <h2 className="text-2xl font-bold mb-2">{block.title}</h2>
             <p className="mb-6 text-[#6c584a]">{block.description}</p>
             <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {block.media.map((m, mi) => {
                 const gi = offsets[bi] + mi;
-                // Фокус для отдельных фото через objectPosition, если есть
                 const extraImgStyle = m.objectPosition
                   ? { objectPosition: m.objectPosition }
                   : {};
@@ -222,79 +328,71 @@ export default function Gallery() {
           />
         )}
 
-        <section id="contact" className="py-16 md:py-20 bg-[#f8f2eb]">
-  <h2 className="text-4xl font-semibold mb-12 text-center pl-1">Contacts</h2>
-  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
-    <div>
-      <div className="mb-5 text-[#473b2a] text-lg">
-        We are always happy to clarify any question about owning a Sphynx or provide insights into their unique care and characteristics!
-      </div>
-      <div className="mb-7">
-        <div className="flex mb-2">
-          <span className="w-28 font-semibold">Address</span>
-          <span>Canada, Vancouver</span>
-        </div>
-        <div className="flex mb-2">
-          <span className="w-28 font-semibold">Hours</span>
-          <span>10 AM - 12 PM</span>
-        </div>
-        <div className="flex mb-2">
-          <span className="w-28 font-semibold">Contacts</span>
-          <span>
-            <a href="mailto:nudensatin@gmail.com" className="underline hover:text-[#aa8960]">nudensatin@gmail.com</a>
-          </span>
-        </div>
-      </div>
-      <div className="rounded-xl overflow-hidden shadow-lg mt-8">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83285.16669239991!2d-123.20313810688907!3d49.28281178752603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0xbb9196ea9b81f38b!2z0JLQsNC90LrRg9Cy0LXRgCwg0JHRgNC40YLQsNC90YHQutCw0Y8g0JrQvtC70YPQvNCx0LjRjywg0JrQsNC90LDQtNCw!5e0!3m2!1sru!2sua!4v1751052835254!5m2!1sru!2sua"
-          width="100%"
-          height="320"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
-    </div>
-    <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
-      <input
-        type="text"
-        placeholder="Enter your full name*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
-        required
-      />
-      <input
-        type="tel"
-        placeholder="Enter your phone number*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
-      />
-      <input
-        type="email"
-        placeholder="Enter your e-mail*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
-        required
-      />
-      <textarea
-        placeholder="Type your message"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
-        rows={4}
-      ></textarea>
-      <button
-        type="submit"
-        className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider"
-      >
-        Send message
-      </button>
-    </form>
-  </div>
-</section>
-
+        {/* ---- Контакты ---- */}
+        <section id="contact" className="py-16 md:py-20 bg-[#f8f2eb] anim-scroll opacity-0 transition-all duration-700">
+          <h2 className="text-4xl font-semibold mb-12 text-center pl-1">Contacts</h2>
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
+            <div>
+              <div className="mb-5 text-[#473b2a] text-lg">
+                We are always happy to clarify any question about owning a Sphynx or provide insights into their unique care and characteristics!
+              </div>
+              <div className="mb-7">
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Address</span>
+                  <span>Canada, Vancouver</span>
+                </div>
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Hours</span>
+                  <span>10 AM - 12 PM</span>
+                </div>
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Contacts</span>
+                  <span>
+                    <a href="mailto:nudensatin@gmail.com" className="underline hover:text-[#aa8960]">nudensatin@gmail.com</a>
+                  </span>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-lg mt-8">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83285.16669239991!2d-123.20313810688907!3d49.28281178752603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0xbb9196ea9b81f38b!2z0JLQsNC90LrRg9Cy0LXRgCwg0JHRgNC40YLQsNC90YHQutCw0Y8g0JrQvtC70YPQvNCx0LjRjywg0JrQsNC90LDQtNCw!5e0!3m2!1sru!2sua!4v1751052835254!5m2!1sru!2sua"
+                  width="100%"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+            <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
+              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
+              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <textarea placeholder="Type your message" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
+              <button type="submit" className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider">
+                Send message
+              </button>
+            </form>
+          </div>
+        </section>
       </main>
 
       <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude'n Satin. All rights Reserved. Created by DevCodeX.
+        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
       </footer>
+
+      {/* --- SCROLL FADE-UP ANIMATION --- */}
+      <style jsx global>{`
+        .animate-fade-up {
+          opacity: 1 !important;
+          transform: translateY(0px) scale(1) !important;
+          transition: all 0.7s cubic-bezier(.23,1.1,.32,1) !important;
+        }
+        .anim-scroll {
+          opacity: 0;
+          transform: translateY(40px) scale(0.98);
+        }
+      `}</style>
     </div>
   );
 }

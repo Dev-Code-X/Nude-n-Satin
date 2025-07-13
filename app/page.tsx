@@ -1,5 +1,5 @@
 'use client';
-
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -34,7 +34,7 @@ export default function Home() {
     const handler = () => {
       const ids = ['about', 'sphynxes', 'faq', 'contact'];
       let current = 'about';
-      for (let id of ids) {
+      for (const id of ids) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -85,10 +85,10 @@ export default function Home() {
   return (
     <div className="bg-[#fff8f3] text-[#3d2b1f] font-sans">
       <Head>
-        <title>Nude'n Satin - Canadian Sphynx Cattery</title>
-        <meta name="description" content="Premium Canadian Sphynx cattery offering elegant, healthy kittens. Discover the Nude'n Satin difference." />
-        <meta property="og:title" content="Nude'n Satin - Canadian Sphynx Cattery" />
-        <meta property="og:description" content="Premium Canadian Sphynx cattery offering elegant, healthy kittens. Discover the Nude'n Satin difference." />
+              <title>Nude&apos;n Satin - Canadian Sphynx Cattery</title>
+        <meta name="description" content="Premium Canadian Sphynx cattery offering elegant, healthy kittens. Discover the Nude&apos;n Satin difference." />
+        <meta property="og:title" content="Nude&apos;n Satin - Canadian Sphynx Cattery" />
+        <meta property="og:description" content="Premium Canadian Sphynx cattery offering elegant, healthy kittens. Discover the Nude&apos;n Satin difference." />
         <meta property="og:image" content="/og-preview.jpg" />
       </Head>
 
@@ -96,10 +96,10 @@ export default function Home() {
       <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
         <Link href="/" className="flex items-center space-x-4 mb-2 md:mb-0 hover:opacity-90 transition">
           <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-          <span className="text-2xl font-bold">Nude'n Satin</span>
+          <span className="text-2xl font-bold">Nude&apos;n Satin</span>
         </Link>
         <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-24 mt-2 md:mt-0">
-          {menuItems.map((item, idx) =>
+          {menuItems.map((item) =>
             item.type === 'link' ? (
               <Link
               key={item.label}
@@ -146,7 +146,7 @@ export default function Home() {
           <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-start">
             <div className="flex flex-col justify-between h-full space-y-8">
               <div className="space-y-5 text-[1.15rem] leading-relaxed text-[#3d2b1f] flex flex-col justify-center">
-                <h2 className="text-4xl font-bold mb-6">About Nude’n Satin</h2>
+                <h2 className="text-4xl font-bold mb-6">About Nude&apos;n Satin</h2>
                 <p>Welcome to Nude’n Satin — an elite Canadian Sphynx cattery where technology meets boundless love for our elegant companions.</p>
                 <p>We strive to create a harmonious environment for our Sphynxes, using innovative care approaches like climate control, personalized diets, and regular veterinary checks. Our goal is to gift every family a companion that brings joy and warmth, preserving the Canadian breed’s legacy.</p>
                 <p>Nude’n Satin offers exclusive care packages, including virtual consultations, premium kitten delivery, and personalized adaptation tips for Sphynxes in your home. We pride ourselves on our approach, inspired by world-class design and care standards. We combine cutting-edge knowledge with love to ensure each kitten is healthy and happy.</p>
@@ -370,7 +370,7 @@ export default function Home() {
       </main>
 
       <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude'n Satin. All rights Reserved. Created by DevCodeX.
+        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
       </footer>
 
       {/* --- SCROLL FADE-UP ANIMATION --- */}

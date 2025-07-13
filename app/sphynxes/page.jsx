@@ -1,5 +1,5 @@
 'use client';
-
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -103,13 +103,13 @@ export default function Sphynxes() {
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
-        <title>Our Sphynxes | Nude'n Satin Cattery</title>
+        <title>Our Sphynxes | Nude&apos;n Satin Cattery</title>
       </Head>
       {/* Header */}
       <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
         <div className="flex items-center space-x-4 mb-2 md:mb-0">
           <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-          <span className="text-2xl font-bold">Nude'n Satin</span>
+          <span className="text-2xl font-bold">Nude&apos;n Satin</span>
         </div>
         <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-57 mt-2 md:mt-0">
           <Link href="/">Home</Link>
@@ -269,7 +269,7 @@ export default function Sphynxes() {
 </section>
 
       <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude'n Satin. All rights Reserved. Created by DevCodeX.
+        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
       </footer>
     </div>
   );
