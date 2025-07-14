@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Функция для плавного скролла по id (только на главной!)
-function scrollToId(id) {
+function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (el) {
     window.scrollTo({
@@ -16,7 +16,11 @@ function scrollToId(id) {
   }
 }
 
-const menuItems = [
+type MenuItem =
+  | { label: string; id: string; type: 'scroll' }
+  | { label: string; href: string; type: 'link' };
+
+const menuItems: MenuItem[] = [
   { label: 'About Us', id: 'about', type: 'scroll' },
   { label: 'Our Sphynxes', id: 'sphynxes', type: 'scroll' },
   { label: 'Gallery', href: '/gallery', type: 'link' },
@@ -32,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     if (pathname !== '/') return;
     const handler = () => {
-      const ids = ['about', 'sphynxes', 'faq', 'contact'];
+    const ids: string[] = ['about', 'sphynxes', 'faq', 'contact'];
       let current = 'about';
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -50,15 +54,16 @@ export default function Home() {
   // Анимация появления секций
   useEffect(() => {
     const blocks = document.querySelectorAll('.anim-scroll');
-    const showOnScroll = (entries) => {
-      entries.forEach((entry) => {
+        const showOnScroll: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-up');
         }
       });
     };
-    const observer = new window.IntersectionObserver(showOnScroll, { threshold: 0.2 });
-    blocks.forEach((block) => observer.observe(block));
+     const observer = new window.IntersectionObserver(showOnScroll, {
+      threshold: 0.2,
+    });    blocks.forEach((block) => observer.observe(block));
     return () => blocks.forEach((block) => observer.unobserve(block));
   }, []);
 
@@ -66,7 +71,7 @@ export default function Home() {
   useEffect(() => {
     function handleFullscreenChange() {
       const videos = document.querySelectorAll('video');
-      videos.forEach(video => {
+      videos.forEach((video: HTMLVideoElement) => {
         if (document.fullscreenElement === video) {
           video.classList.remove('object-cover');
           video.classList.add('object-contain');
@@ -99,36 +104,38 @@ export default function Home() {
           <span className="text-2xl font-bold">Nude&apos;n Satin</span>
         </Link>
         <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-24 mt-2 md:mt-0">
-          {menuItems.map((item) =>
-            item.type === 'link' ? (
-              <Link
-              key={item.label}
-             href={item.href || '#'}
-             className={
-             (pathname === item.href
-              ? "underline text-[#ac824e]"
-             : "hover:underline") +
-             " bg-transparent px-2 py-1 rounded transition"
-  }
->
-  {item.label}
-</Link>
-
-            ) : (
+                    {menuItems.map((item) => {
+            if (item.type === 'link') {
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href || '#'}
+                  className={
+                    (pathname === item.href
+                      ? 'underline text-[#ac824e]'
+                      : 'hover:underline') +
+                    ' bg-transparent px-2 py-1 rounded transition'
+                  }
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+            return (
               <button
                 key={item.label}
                 onClick={() => scrollToId(item.id)}
                 className={
                   (pathname === '/' && activeSection === item.id
-                    ? "underline text-[#ac824e]"
-                    : "hover:underline") +
-                  " bg-transparent px-2 py-1 rounded transition"
+                   ? 'underline text-[#ac824e]'
+                    : 'hover:underline') +
+                  ' bg-transparent px-2 py-1 rounded transition'
                 }
               >
                 {item.label}
               </button>
-            )
-          )}
+                       );
+          })}
         </nav>
         <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
           <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
