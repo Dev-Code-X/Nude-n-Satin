@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Header from '../../components/Header';
 
 // TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
 const sphynxTypes = [
@@ -183,8 +184,7 @@ const breedSections = [
         {sphynxTypes.map((t, idx) => (
           <div
             key={idx}
-            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] transition hover:shadow-xl"
-          >
+            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale hover:shadow-lg"          >
             <img
               src={t.img}
               alt={t.title}
@@ -254,22 +254,7 @@ export default function BreedInfo() {
         <title>Breed Info | Nude’n Satin - Canadian Sphynx Cattery</title>
         <meta name="description" content="Everything about the Canadian Sphynx: history, types, character, care, health, facts. With unique photos from our cattery!" />
       </Head>
-      <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
-        <div className="flex items-center space-x-4 mb-2 md:mb-0">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-        <span className="text-2xl font-bold">Nude&apos;n Satin</span>        </div>
-        <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-57 mt-2 md:mt-0">
-          <Link href="/">Home</Link>
-          <Link href="/sphynxes">Our Sphynxes</Link>
-          <Link href="/gallery" className="text-[#ac824e] underline">Gallery</Link>
-          <Link href="/breed-info">Breed Info</Link>
-          <Link href="#contact">Contact</Link></nav>
-        <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
-          <a href="#" aria-label="Instagram"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
-          <a href="#" aria-label="Facebook"><img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6" /></a>
-          <a href="#" aria-label="TikTok"><img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6" /></a>
-        </div>
-      </header>
+       <Header />
 
       <main className="max-w-5xl mx-auto py-10 px-2">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-10">The Sphynx Cat: A Proudly Canadian Breed</h1>

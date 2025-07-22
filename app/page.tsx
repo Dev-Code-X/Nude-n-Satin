@@ -1,55 +1,11 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-// Функция для плавного скролла по id (только на главной!)
-function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (el) {
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.pageYOffset - 60,
-      behavior: 'smooth',
-    });
-  }
-}
-
-type MenuItem =
-  | { label: string; id: string; type: 'scroll' }
-  | { label: string; href: string; type: 'link' };
-
-const menuItems: MenuItem[] = [
-  { label: 'About Us', id: 'about', type: 'scroll' },
-  { label: 'Our Sphynxes', id: 'sphynxes', type: 'scroll' },
-  { label: 'Gallery', href: '/gallery', type: 'link' },
-  { label: 'Breed Info', href: '/breed-info', type: 'link' },
-  { label: 'Contact', id: 'contact', type: 'scroll' },
-];
+import Header from '../../components/Header';
 
 export default function Home() {
-  const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState('about');
-
-  // Выделение для якорей (только на главной!)
-  useEffect(() => {
-    if (pathname !== '/') return;
-    const handler = () => {
-    const ids: string[] = ['about', 'sphynxes', 'faq', 'contact'];
-      let current = 'about';
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < 120) current = id;
-        }
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener('scroll', handler);
-    return () => window.removeEventListener('scroll', handler);
-  }, [pathname]);
 
   // Анимация появления секций
   useEffect(() => {
@@ -97,52 +53,8 @@ export default function Home() {
         <meta property="og:image" content="/og-preview.jpg" />
       </Head>
 
-      {/* Хедер */}
-      <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
-        <Link href="/" className="flex items-center space-x-4 mb-2 md:mb-0 hover:opacity-90 transition">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-          <span className="text-2xl font-bold">Nude&apos;n Satin</span>
-        </Link>
-        <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-24 mt-2 md:mt-0">
-                    {menuItems.map((item) => {
-            if (item.type === 'link') {
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href || '#'}
-                  className={
-                    (pathname === item.href
-                      ? 'underline text-[#ac824e]'
-                      : 'hover:underline') +
-                    ' bg-transparent px-2 py-1 rounded transition'
-                  }
-                >
-                  {item.label}
-                </Link>
-              );
-            }
-            return (
-              <button
-                key={item.label}
-                onClick={() => scrollToId(item.id)}
-                className={
-                  (pathname === '/' && activeSection === item.id
-                   ? 'underline text-[#ac824e]'
-                    : 'hover:underline') +
-                  ' bg-transparent px-2 py-1 rounded transition'
-                }
-              >
-                {item.label}
-              </button>
-                       );
-          })}
-        </nav>
-        <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
-          <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
-          <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener"><img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6" /></a>
-          <a href="https://tiktok.com/" aria-label="TikTok" target="_blank" rel="noopener"><img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6" /></a>
-        </div>
-      </header>
+      {/* Header */}
+      <Header isHome />
       <section className="w-full anim-scroll opacity-0 transition-all duration-700 ">
         <img src="/images/banner.png" alt="Nude'n Satin Banner" className="w-full h-auto object-cover" />
       </section>
@@ -179,16 +91,14 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 1 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md transition-transform duration-150 hover:scale-110 hover:shadow-2xl">
-                <img src="/icons/health.svg" alt="Healthy Sphynxes" className="h-12 w-12 mb-4" />
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale hover:shadow-lg">                <img src="/icons/health.svg" alt="Healthy Sphynxes" className="h-12 w-12 mb-4" />
                 <h3 className="font-semibold text-xl mb-2">Exceptional Health</h3>
                 <p className="text-base text-[#71604a] text-center">
                   All of our Sphynxes are tested and cleared for skin health, heart conditions, and genetic issues, certified with leading veterinary organizations.
                 </p>
               </div>
               {/* Карточка 2 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md transition-transform duration-150 hover:scale-110 hover:shadow-2xl">
-                <img src="/icons/instructions.svg" alt="Useful Instructions" className="h-12 w-12 mb-4" />
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale hover:shadow-lg">                <img src="/icons/instructions.svg" alt="Useful Instructions" className="h-12 w-12 mb-4" />
                 <h3 className="font-semibold text-xl mb-2">Clear Instructions</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We will provide CFA papers, health records, feeding instructions, and a care manual for your Sphynx kitten.
@@ -197,16 +107,14 @@ export default function Home() {
             </div>
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 3 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md transition-transform duration-150 hover:scale-110 hover:shadow-2xl">
-                <img src="/icons/contact.svg" alt="Always in Touch" className="h-12 w-12 mb-4" />
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale hover:shadow-lg">                <img src="/icons/contact.svg" alt="Always in Touch" className="h-12 w-12 mb-4" />
                 <h3 className="font-semibold text-xl mb-2">Always In Touch</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We keep in touch with new owners, checking the Sphynxes’ condition and offering ongoing support from time to time.
                 </p>
               </div>
               {/* Карточка 4 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md transition-transform duration-150 hover:scale-110 hover:shadow-2xl">
-                <img src="/icons/advice.svg" alt="Useful Advice" className="h-12 w-12 mb-4" />
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale hover:shadow-lg">                <img src="/icons/advice.svg" alt="Useful Advice" className="h-12 w-12 mb-4" />
                 <h3 className="font-semibold text-xl mb-2">Expert Advice</h3>
                 <p className="text-base text-[#71604a] text-center">
                   Free advice on grooming, socializing, adaptation and every stage of your Sphynx’s happy life.
@@ -220,8 +128,7 @@ export default function Home() {
           <h2 className="text-3xl font-semibold text-center mb-15 -mt-10">Our Sphynxes</h2>
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 px-2 md:px-6">
             {/* КОТ 1 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover:scale-110 transition-transform duration-150">
-              <img src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72 object-cover" />
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">              <img src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72 object-cover" />
               <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Bullochka</h3>
                 <p className="text-base text-gray-500 mb-2">King (Father)</p>
@@ -229,8 +136,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 2 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover:scale-110 transition-transform duration-150">
-              <img src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">              <img src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
               <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Afeliya</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
@@ -238,8 +144,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 3 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover:scale-110 transition-transform duration-150">
-              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
               <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Liliana</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
@@ -247,8 +152,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 4 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover:scale-110 transition-transform duration-150">
-              <img src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">              <img src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72 object-cover" />
               <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Vera</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
@@ -293,8 +197,7 @@ export default function Home() {
                 a: "12–15 years with good care! Veterinary checkups and a balanced diet keep your friend healthy and happy.",
               },
             ].map(({ q, a }, i) => (
-              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover:shadow-xl transition">
-                <h3 className="font-bold mb-2">{q}</h3>
+              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover-scale hover:shadow-lg">                <h3 className="font-bold mb-2">{q}</h3>
                 <p className="text-sm text-[#715f4a]">{a}</p>
               </div>
             ))}

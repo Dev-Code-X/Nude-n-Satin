@@ -2,20 +2,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Header from '../../components/Header';
 import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
 
-// ----- Меню
-const menuItems = [
-  { label: 'Home', href: '/', type: 'link' },
-  { label: 'Our Sphynxes', href: '/sphynxes', type: 'link' },
-  { label: 'Gallery', href: '/gallery', type: 'link' },
-  { label: 'Breed Info', href: '/breed-info', type: 'link' },
-  { label: 'Contact', id: 'contact', type: 'scroll' },
-];
 
 // ----- Галерея
 const galleryBlocks = [
@@ -146,10 +137,9 @@ const offsets = galleryBlocks.map(block => {
 });
 
 export default function Gallery() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
-  const [activeSection, setActiveSection] = useState('');
+
 
   // ---- Анимация появления блоков при скролле
   useEffect(() => {
@@ -168,25 +158,6 @@ export default function Gallery() {
     return () => blocks.forEach((block) => observer.unobserve(block));
   }, []);
 
-  // ---- Активная секция для меню (scroll и route)
-  useEffect(() => {
-    if (pathname !== '/gallery') return; // Только если эта страница
-    const ids = ['contact'];
-    const handler = () => {
-      let current = '';
-      for (let id of ids) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < 120) current = id;
-        }
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener('scroll', handler);
-    handler();
-    return () => window.removeEventListener('scroll', handler);
-  }, [pathname]);
 
   // --- Исправление полноэкранного видео (object-fit)
   useEffect(() => {
@@ -208,67 +179,13 @@ export default function Gallery() {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  // ---- Скролл до контактов (для Contact в меню)
-  function scrollToId(id) {
-    const el = document.getElementById(id);
-    if (el) {
-      window.scrollTo({
-        top: el.getBoundingClientRect().top + window.pageYOffset - 60,
-        behavior: 'smooth',
-      });
-      setActiveSection(id);
-    }
-  }
-
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
         <title>Gallery | Nude&apos;n Satin - Canadian Sphynx Cattery</title>
       </Head>
       {/* --- МЕНЮ --- */}
-      <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
-        <Link href="/" className="flex items-center space-x-4 mb-2 md:mb-0 cursor-pointer group">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto group-hover:scale-105 transition" />
-          <span className="text-2xl font-bold group-hover:text-[#ac824e] transition">Nude&apos;n Satin</span>
-        </Link>
-        <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-57 mt-2 md:mt-0">
-          {menuItems.map((item, idx) =>
-            item.type === 'link' ? (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={
-                  (pathname === item.href
-                    ? "underline text-[#ac824e]"
-                    : "hover:underline") +
-                  " bg-transparent px-2 py-1 rounded transition"
-                }
-                aria-current={pathname === item.href ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <button
-                key={item.label}
-                onClick={() => scrollToId(item.id)}
-                className={
-                  (activeSection === item.id
-                    ? "underline text-[#ac824e]"
-                    : "hover:underline") +
-                  " bg-transparent px-2 py-1 rounded transition"
-                }
-              >
-                {item.label}
-              </button>
-            )
-          )}
-        </nav>
-        <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
-          <a href="#" aria-label="Instagram"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
-          <a href="#" aria-label="Facebook"><img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6" /></a>
-          <a href="#" aria-label="TikTok"><img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6" /></a>
-        </div>
-      </header>
+      <Header />
 
       <main className="max-w-7xl mx-auto py-10 px-4">
         <h1 className="text-4xl font-bold text-center mb-12 anim-scroll opacity-0 transition-all duration-700">Full Gallery</h1>

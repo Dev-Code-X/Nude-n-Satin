@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
+import Header from "../../components/Header";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -105,24 +105,7 @@ export default function Sphynxes() {
       <Head>
         <title>Our Sphynxes | Nude&apos;n Satin Cattery</title>
       </Head>
-      {/* Header */}
-      <header className="flex flex-col md:flex-row items-center px-4 md:px-10 py-4 shadow-md bg-white gap-2 md:gap-0">
-        <div className="flex items-center space-x-4 mb-2 md:mb-0">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto" />
-          <span className="text-2xl font-bold">Nude&apos;n Satin</span>
-        </div>
-        <nav className="text-lg flex flex-wrap space-x-4 md:space-x-8 font-bold md:ml-57 mt-2 md:mt-0">
-          <Link href="/">Home</Link>
-          <Link href="/sphynxes">Our Sphynxes</Link>
-          <Link href="/gallery" className="text-[#ac824e] underline">Gallery</Link>
-          <Link href="/breed-info">Breed Info</Link>
-          <Link href="#contact">Contact</Link></nav>
-        <div className="flex space-x-4 md:ml-auto mt-2 md:mt-0">
-          <a href="#" aria-label="Instagram"><img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6" /></a>
-          <a href="#" aria-label="Facebook"><img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6" /></a>
-          <a href="#" aria-label="TikTok"><img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6" /></a>
-        </div>
-      </header>
+      <Header />
 
       <main className="max-w-7xl mx-auto py-10 px-4">
         <h1 className="text-4xl font-bold text-center mb-10">Our Sphynxes</h1>
@@ -131,8 +114,7 @@ export default function Sphynxes() {
         <section className="mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {parents.map((p, i) => (
-              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center">
-                <div className="w-full max-w-sm mb-4">
+              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-scale hover:shadow-lg">                <div className="w-full max-w-sm mb-4">
                   <Slider {...sliderSettings}>
                     {p.images.map((src, idx) => (
                       <div key={idx}>
@@ -152,8 +134,7 @@ export default function Sphynxes() {
         <h2 className="text-3xl font-bold text-center mb-6">Kittens from First Litter</h2>
         <section className="mb-20 grid md:grid-cols-2 gap-10">
           {kittens.map((kitten, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start">
-              <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
+            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start hover-scale hover:shadow-lg">              <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
                 <Slider {...sliderSettings}>
                   {kitten.images.map((src, idx) => (
                     <div key={idx}>
@@ -178,8 +159,7 @@ export default function Sphynxes() {
         <h2 className="text-3xl font-bold text-center mb-6">Second Litter (Coming Soon)</h2>
         <section className="mb-20 grid md:grid-cols-2 gap-12 items-start">
           {parents2.map((p, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center">
-              <div className="w-full max-w-sm mb-4">
+            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-scale hover:shadow-lg">              <div className="w-full max-w-sm mb-4">
                 <Slider {...sliderSettings}>
                   {p.images.map((src, idx) => (
                     <div key={idx}>
