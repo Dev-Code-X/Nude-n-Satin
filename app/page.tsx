@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import Header from '/Users/kuz/nude-n-satin-site/app/components/Header.tsx';
+import Header from './components/Header';
 
 export default function Home() {
 

@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Head from "next/head";
-import Header from "/Users/kuz/nude-n-satin-site/app/components/Header.tsx";
+import Header from "./components/Header";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
