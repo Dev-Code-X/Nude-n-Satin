@@ -32,4 +32,7 @@ body {
   .hover-color {
     @apply transition-colors duration-200 hover:text-[#ac824e];
   }
+  .hover-glow {
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:text-[#ac824e] hover:bg-[#f7f0e7];
+  }
 }

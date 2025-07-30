@@ -62,16 +62,15 @@ export default function Header({ isHome = false }: HeaderProps) {
     <header className="bg-white shadow-md px-4 md:px-10 py-4">
       <div className="flex items-center">
         <Link href="/" className="flex items-center space-x-4 flex-shrink-0">
-          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto hover-scale" />
-          <span className="text-2xl font-bold hover:text-[#ac824e] transition-colors">Nude&apos;n Satin</span>
-        </Link>
+          <img src="/images/logo.png" alt="Logo" className="h-20 w-auto hover-glow" />
+          <span className="text-2xl font-bold hover-glow">Nude&apos;n Satin</span>        </Link>
         <nav className="flex-1 flex justify-center space-x-4 md:space-x-8 text-lg font-bold">
           {menuItems.map((item) =>
             item.type === 'link' ? (
               <Link
                 key={item.label}
                 href={item.href || '#'}
-                className={`px-2 py-1 rounded hover-color ${pathname === item.href ? 'text-[#ac824e]' : ''}`}
+                className={`px-2 py-1 rounded hover-glow ${pathname === item.href ? 'text-[#ac824e]' : ''}`}
               >
                 {item.label}
               </Link>
@@ -79,7 +78,7 @@ export default function Header({ isHome = false }: HeaderProps) {
               <button
                 key={item.label}
                 onClick={() => scrollToId(item.id!)}
-                className={`px-2 py-1 rounded hover-color ${activeSection === item.id ? 'text-[#ac824e]' : ''}`}
+                className={`px-2 py-1 rounded hover-glow ${activeSection === item.id ? 'text-[#ac824e]' : ''}`}
               >
                 {item.label}
               </button>
@@ -88,13 +87,13 @@ export default function Header({ isHome = false }: HeaderProps) {
         </nav>
         <div className="flex space-x-4 flex-shrink-0">
           <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
-            <img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6 hover-scale" />
+            <img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6 hover-glow" />
           </a>
           <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener">
-            <img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6 hover-scale" />
+            <img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6 hover-glow" />
           </a>
           <a href="https://tiktok.com/" aria-label="TikTok" target="_blank" rel="noopener">
-            <img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6 hover-scale" />
+            <img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6 hover-glow" />
           </a>
         </div>
       </div>

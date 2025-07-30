@@ -1,11 +1,13 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import Header from "../../components/Header";
+import Header from "/Users/kuz/nude-n-satin-site/app/components/Header.tsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 // ——— Данные для родителей и котят ———
 const parents = [
@@ -91,7 +93,7 @@ const parents2 = [
 
 export default function Sphynxes() {
   const sliderSettings = {
-    dots: true,
+    dots: false,
     arrows: false,
     infinite: true,
     speed: 350,
@@ -99,6 +101,9 @@ export default function Sphynxes() {
     slidesToScroll: 1,
     adaptiveHeight: true,
   };
+  const [open, setOpen] = useState(false);
+  const [slides, setSlides] = useState([]);
+  const [index, setIndex] = useState(0);
 
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
@@ -114,11 +119,11 @@ export default function Sphynxes() {
         <section className="mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {parents.map((p, i) => (
-              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-scale hover:shadow-lg">                <div className="w-full max-w-sm mb-4">
-                  <Slider {...sliderSettings}>
+              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-glow hover:shadow-lg">                
+              <div className="w-full max-w-sm mb-4">                 
+                 <Slider {...sliderSettings}>
                     {p.images.map((src, idx) => (
-                      <div key={idx}>
-                        <img src={src} alt={p.name} className="rounded-xl w-full object-cover h-80" />
+                      <div key={idx} onClick={() => { setSlides(p.images.map(s => ({ src: s }))); setIndex(idx); setOpen(true); }}>                        <img src={src} alt={p.name} className="rounded-xl w-full object-cover h-80" />
                       </div>
                     ))}
                   </Slider>
@@ -134,10 +139,10 @@ export default function Sphynxes() {
         <h2 className="text-3xl font-bold text-center mb-6">Kittens from First Litter</h2>
         <section className="mb-20 grid md:grid-cols-2 gap-10">
           {kittens.map((kitten, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start hover-scale hover:shadow-lg">              <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
+            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start hover-glow hover:shadow-lg">              <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
                 <Slider {...sliderSettings}>
                   {kitten.images.map((src, idx) => (
-                    <div key={idx}>
+                    <div key={idx} onClick={() => { setSlides(kitten.images.map(s => ({ src: s }))); setIndex(idx); setOpen(true); }}>
                       <img src={src} alt={kitten.name} className="rounded-xl w-full object-cover h-64" />
                     </div>
                   ))}
@@ -159,7 +164,7 @@ export default function Sphynxes() {
         <h2 className="text-3xl font-bold text-center mb-6">Second Litter (Coming Soon)</h2>
         <section className="mb-20 grid md:grid-cols-2 gap-12 items-start">
           {parents2.map((p, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-scale hover:shadow-lg">              <div className="w-full max-w-sm mb-4">
+            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-glow hover:shadow-lg">              <div className="w-full max-w-sm mb-4">
                 <Slider {...sliderSettings}>
                   {p.images.map((src, idx) => (
                     <div key={idx}>
@@ -179,6 +184,10 @@ export default function Sphynxes() {
           <p className="text-center text-lg">Pre-order for the second litter is open. Reserve your kitten today!</p>
         </div>
       </main>
+        {open && (
+        <Lightbox open={open} close={() => setOpen(false)} slides={slides} index={index} />
+        )}
+
 
       <section id="contact" className="py-16 md:py-20 bg-[#f8f2eb]">
   <h2 className="text-4xl font-semibold mb-12 text-center pl-1">Contacts</h2>

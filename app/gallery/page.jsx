@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Header from '../../components/Header';
+import Header from '/Users/kuz/nude-n-satin-site/app/components/Header.tsx';
 import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
@@ -202,8 +202,7 @@ export default function Gallery() {
                 return (
                   <div
                     key={gi}
-                    className="relative rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition hover:scale-105"
-                    style={{ aspectRatio: '4/3', minHeight: 230 }}
+                    className="relative rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition hover:scale-105 hover:bg-[#f7f0e7]"                    style={{ aspectRatio: '4/3', minHeight: 230 }}
                     onClick={() => { setIndex(gi); setOpen(true); }}
                   >
                     {m.type === 'img' ? (

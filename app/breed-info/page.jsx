@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '../../components/Header';
+import Header from '/Users/kuz/nude-n-satin-site/app/components/Header.tsx';
 
 // TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
 const sphynxTypes = [
@@ -184,8 +184,7 @@ const breedSections = [
         {sphynxTypes.map((t, idx) => (
           <div
             key={idx}
-            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale hover:shadow-lg"          >
-            <img
+            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-glow hover:shadow-lg"          >            <img
               src={t.img}
               alt={t.title}
               className="w-32 h-32 object-cover rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
