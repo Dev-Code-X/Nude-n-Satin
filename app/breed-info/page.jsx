@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from './components/Header';
+import Header from '../components/Header'
 
 // TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
 const sphynxTypes = [
