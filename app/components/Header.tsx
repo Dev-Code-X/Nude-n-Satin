@@ -12,7 +12,8 @@ interface HeaderProps {
 export default function Header({ isHome = false }: HeaderProps) {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState('about');
-  
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const HEADER_OFFSET = 120;
 
   const menuItems: MenuItem[] = isHome
@@ -57,6 +58,8 @@ export default function Header({ isHome = false }: HeaderProps) {
         behavior: 'smooth',
       });
       setActiveSection(id);
+      setMenuOpen(false);
+
     }
   };
 
@@ -65,9 +68,16 @@ export default function Header({ isHome = false }: HeaderProps) {
       <div className="flex items-center">
         <Link href="/" className="flex items-center space-x-4 flex-shrink-0">
           <img src="/images/logo.png" alt="Logo" className="h-20 w-auto hover-glow" />
-          <span className="text-2xl font-bold hover-glow">Nude&apos;n Satin</span>        </Link>
-        <nav className="flex-1 flex justify-center space-x-4 md:space-x-8 text-lg font-bold">
-          {menuItems.map((item) =>
+          <span className="text-2xl font-bold hover-glow">Nude&apos;n Satin</span>
+        </Link>
+        <button
+          className="ml-auto md:hidden"
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <img src="/icons/menu.svg" alt="Menu" className="h-8 w-8" />
+        </button>
+        <nav className="hidden md:flex flex-1 justify-center space-x-4 md:space-x-8 text-lg font-bold">          {menuItems.map((item) =>
             item.type === 'link' ? (
               <Link
                 key={item.label}
@@ -87,7 +97,7 @@ export default function Header({ isHome = false }: HeaderProps) {
             )
           )}
         </nav>
-        <div className="flex space-x-4 flex-shrink-0">
+        <div className="hidden md:flex space-x-4 flex-shrink-0">
           <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
             <img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6 hover-glow" />
           </a>
@@ -99,6 +109,39 @@ export default function Header({ isHome = false }: HeaderProps) {
           </a>
         </div>
       </div>
+      <nav className={`${menuOpen ? 'flex' : 'hidden'} md:hidden flex-col items-center space-y-4 mt-4 text-lg font-bold`}>
+        {menuItems.map((item) =>
+          item.type === 'link' ? (
+            <Link
+              key={item.label}
+              href={item.href || '#'}
+              onClick={() => setMenuOpen(false)}
+              className={`px-2 py-1 rounded hover-glow ${pathname === item.href ? 'text-[#ac824e]' : ''}`}
+            >
+              {item.label}
+            </Link>
+          ) : (
+            <button
+              key={item.label}
+              onClick={() => scrollToId(item.id!)}
+              className={`px-2 py-1 rounded hover-glow ${activeSection === item.id ? 'text-[#ac824e]' : ''}`}
+            >
+              {item.label}
+            </button>
+          )
+        )}
+        <div className="flex space-x-4 pt-2">
+          <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
+            <img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6 hover-glow" />
+          </a>
+          <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener">
+            <img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6 hover-glow" />
+          </a>
+          <a href="https://tiktok.com/" aria-label="TikTok" target="_blank" rel="noopener">
+            <img src="/icons/tiktok.png" alt="TikTok" className="h-6 w-6 hover-glow" />
+          </a>
+        </div>
+      </nav>
     </header>
   );
 }
