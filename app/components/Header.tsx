@@ -12,6 +12,8 @@ interface HeaderProps {
 export default function Header({ isHome = false }: HeaderProps) {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState('about');
+  
+  const HEADER_OFFSET = 120;
 
   const menuItems: MenuItem[] = isHome
     ? [
@@ -38,7 +40,7 @@ export default function Header({ isHome = false }: HeaderProps) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top < 120) current = id;
+          if (rect.top < HEADER_OFFSET) current = id;
         }
       }
       setActiveSection(current);
@@ -51,7 +53,7 @@ export default function Header({ isHome = false }: HeaderProps) {
     const el = document.getElementById(id);
     if (el) {
       window.scrollTo({
-        top: el.getBoundingClientRect().top + window.pageYOffset - 60,
+        top: el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET,
         behavior: 'smooth',
       });
       setActiveSection(id);

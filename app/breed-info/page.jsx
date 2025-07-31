@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '../components/Header.tsx'
+import Header from '../components/Header'
 
 // TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
 const sphynxTypes = [
@@ -181,10 +181,10 @@ const breedSections = [
         There are several fascinating varieties of hairless cats. Here’s an overview:
       </p>
       <div className="flex flex-col gap-6">
-        {sphynxTypes.map((t, idx) => (
+          {sphynxTypes.map((t, idx) => (
           <div
             key={idx}
-            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-glow hover:shadow-lg"          >            <img
+            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale"          >            <img
               src={t.img}
               alt={t.title}
               className="w-32 h-32 object-cover rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
@@ -371,14 +371,7 @@ export default function BreedInfo() {
     </form>
   </div>
 </section>
-
-      </main>
-
-      <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
-      </footer>
-    </div>
-
-    
+</main>
+</div>  
   );
 }

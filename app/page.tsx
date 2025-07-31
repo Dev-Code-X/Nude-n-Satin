@@ -2,7 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import Header from './components/Header.tsx';
+import Header from './components/Header';
+import SmartImage from './components/SmartImage.tsx';
 
 export default function Home() {
 
@@ -65,16 +66,15 @@ export default function Home() {
                 <p>In 2024, Nude’n Satin stands out among other catteries with our focus on aesthetics, modernity, and personalized service. We create not just pets, but family members who inspire and delight.</p>
               </div>
               <div className="flex flex-col gap-6">
-                <img src="/images/cat5.jpg" alt="Cat 5" className="w-full h-[320px] object-cover rounded-xl shadow-md" />
-                <img src="/images/cat6.jpeg" alt="Cat 6" className="w-full h-[520px] object-cover rounded-xl shadow-md" />
+                <SmartImage src="/images/cat5.jpg" alt="Cat 5" className="w-full h-[320px] rounded-xl shadow-md" />
+                <SmartImage src="/images/cat6.jpeg" alt="Cat 6" className="w-full h-[520px] rounded-xl shadow-md" />
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-2 gap-6 h-full">
-              <img src="/images/cat1.jpeg" alt="Cat 1" className="w-full h-full object-cover rounded-xl shadow-md" />
-              <img src="/images/cat2.jpeg" alt="Cat 2" className="w-full h-full object-cover rounded-xl shadow-md" />
-              <img src="/images/cat3.jpg" alt="Cat 3" className="w-full h-full object-cover rounded-xl shadow-md" />
-              <img src="/images/cat4.jpeg" alt="Cat 4" className="w-full h-full object-cover rounded-xl shadow-md" />
-            </div>
+              <SmartImage src="/images/cat1.jpeg" alt="Cat 1" className="w-full h-full rounded-xl shadow-md" />
+              <SmartImage src="/images/cat2.jpeg" alt="Cat 2" className="w-full h-full rounded-xl shadow-md" />
+              <SmartImage src="/images/cat3.jpg" alt="Cat 3" className="w-full h-full rounded-xl shadow-md" />
+              <SmartImage src="/images/cat4.jpeg" alt="Cat 4" className="w-full h-full rounded-xl shadow-md" />            </div>
           </div>
         </section>
 
@@ -84,14 +84,14 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 1 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow hover:shadow-lg">                
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
                 <img src="/icons/health.svg" alt="Healthy Sphynxes" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Exceptional Health</h3>
                 <p className="text-base text-[#71604a] text-center">
                   All of our Sphynxes are tested and cleared for skin health, heart conditions, and genetic issues, certified with leading veterinary organizations.
                 </p>
               </div>
               {/* Карточка 2 */}
-                <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow hover:shadow-lg">                
+                <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
                   <img src="/icons/instructions.svg" alt="Useful Instructions" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Clear Instructions</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We will provide CFA papers, health records, feeding instructions, and a care manual for your Sphynx kitten.
@@ -100,14 +100,14 @@ export default function Home() {
             </div>
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 3 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow hover:shadow-lg">               
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
                  <img src="/icons/contact.svg" alt="Always in Touch" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Always In Touch</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We keep in touch with new owners, checking the Sphynxes’ condition and offering ongoing support from time to time.
                 </p>
               </div>
               {/* Карточка 4 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow hover:shadow-lg">                
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
                 <img src="/icons/advice.svg" alt="Useful Advice" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Expert Advice</h3>
                 <p className="text-base text-[#71604a] text-center">
                   Free advice on grooming, socializing, adaptation and every stage of your Sphynx’s happy life.
@@ -117,36 +117,40 @@ export default function Home() {
           </div >
         </section>
 
-        <section id="sphynxes" className="py-12 md:py-0 bg-[#fffaf6] anim-scroll opacity-0 transition-all duration-700 mb-12">
-          <h2 className="text-3xl font-semibold text-center mb-15 -mt-10">Our Sphynxes</h2>
+        <section id="sphynxes" className="py-12 md:py-0 bg-[#fffaf6] anim-scroll opacity-0 transition-all duration-700 mb-12 scroll-mt-24">
+          <h2 className="text-3xl font-semibold text-center mb-15">Our Sphynxes</h2>
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 px-2 md:px-6">
             {/* КОТ 1 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">              
-              <img src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72 object-cover" />              <div className="flex flex-col justify-center p-6">
-                <h3 className="text-2xl font-bold mb-1">Bullochka</h3>
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+              <SmartImage src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72" />              <div className="flex flex-col justify-center p-6">
+                <h3 className="text-2xl font-bold mb-1">Bulochka</h3>              
                 <p className="text-base text-gray-500 mb-2">King (Father)</p>
                 <p className="text-gray-700">Canadian Sphynx, affectionate, calm and charismatic, the father of many kittens in our cattery.</p>
               </div>
             </div>
             {/* КОТ 2 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">              
-              <img src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72 object-cover" />              <div className="flex flex-col justify-center p-6">
-                <h3 className="text-2xl font-bold mb-1">Afeliya</h3>
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+              <SmartImage src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72" />              
+              <div className="flex flex-col justify-center p-6">             
+    
+                <h3 className="text-2xl font-bold mb-1">Ofelya</h3>             
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
                 <p className="text-gray-700">Gentle and wise, Canadian Sphynx, our affectionate mother cat, always brings up healthy kittens.</p>
               </div>
             </div>
             {/* КОТ 3 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">              
-              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72 object-cover" />              <div className="flex flex-col justify-center p-6">
-                <h3 className="text-2xl font-bold mb-1">Liliana</h3>
+             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+              <SmartImage src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72" />              
+              <div className="flex flex-col justify-center p-6">               
+               <h3 className="text-2xl font-bold mb-1">Liliana</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
                 <p className="text-gray-700">Elegant and playful, our Canadian Sphynx queen, loves to play and cares deeply for her kittens.</p>
               </div>
             </div>
             {/* КОТ 4 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">              
-              <img src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72 object-cover" />              <div className="flex flex-col justify-center p-6">
+             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+              <SmartImage src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72" />              
+              <div className="flex flex-col justify-center p-6">              
                 <h3 className="text-2xl font-bold mb-1">Vera</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
                 <p className="text-gray-700">Our beautiful sphynx-mix, energetic and caring, brings unique charm and joy to our cattery.</p>
@@ -154,15 +158,15 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center mt-10">
-            <Link href="/sphynxes" className="inline-block px-8 py-3 bg-[#57382d] text-white rounded-xl font-semibold text-lg hover:bg-[#77524b] transition-all shadow-lg">
+            <Link href="/sphynxes" aria-label="View full gallery" className="btn-primary">
               Buy Kittens
             </Link>
           </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="bg-[#f4edea] py-12 md:py-16 anim-scroll opacity-0 transition-all duration-700">
-          <h2 className="text-3xl font-semibold text-center mb-12 -mt-4">FAQ</h2>
+        <section id="faq" className="bg-[#f4edea] py-12 md:py-16 anim-scroll opacity-0 transition-all duration-700 scroll-mt-24">
+          <h2 className="text-3xl font-semibold text-center mb-12">FAQ</h2>
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
              {[
               {
@@ -190,22 +194,21 @@ export default function Home() {
                 a: "12–15 years with good care! Veterinary checkups and a balanced diet keep your friend healthy and happy.",
               },
             ].map(({ q, a }, i) => (
-              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover-glow hover:shadow-lg">                
-              <h3 className="font-bold mb-2">{q}</h3>                
-              <h3 className="font-bold mb-2">{q}</h3>
+              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover-scale">
+                <h3 className="font-bold mb-2">{q}</h3>
                 <p className="text-sm text-[#715f4a]">{a}</p>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/breed-info" className="inline-block px-8 py-3 bg-[#57382d] text-white rounded-xl font-semibold text-lg hover:bg-[#77524b] transition-all shadow-lg mb-0 mt-5">
+            <Link href="/breed-info" aria-label="Learn more about the breed" className="btn-primary mt-5">
               Learn More
             </Link>
           </div>
         </section>
 
         {/* MINI GALLERY */}
-        <section id="gallery" className=" py-14 md:py-5 anim-scroll opacity-0 transition-all duration-700 -mt-15">
+        <section id="gallery" className="py-14 md:py-5 anim-scroll opacity-0 transition-all duration-700 scroll-mt-24">
           <h2 className="text-3xl font-semibold text-center mb-13 ">Mini Gallery</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[1, 2, 3, 4, 5].map(i => (
@@ -218,34 +221,61 @@ export default function Home() {
               />
             ))}
           </div>
+          <div className="text-center mt-8">
+            <Link href="/gallery" aria-label="View full gallery" className="btn-primary">
+              See Full Gallery
+            </Link>
+          </div>
         </section>
 
+        {/* CONTACTS */}
+        <section id="contact" className="py-16 md:py-20 bg-[#f8f2eb] anim-scroll opacity-0 transition-all duration-700">
+          <h2 className="text-4xl font-semibold mb-12 text-center pl-1">Contacts</h2>
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
+            <div>
+              <div className="mb-5 text-[#473b2a] text-lg">
+                We are always happy to clarify any question about owning a Sphynx or provide insights into their unique care and characteristics!
+              </div>
+              <div className="mb-7">
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Address</span>
+                  <span>Canada, Vancouver</span>
+                </div>
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Hours</span>
+                  <span>10 AM - 12 PM</span>
+                </div>
+                <div className="flex mb-2">
+                  <span className="w-28 font-semibold">Contacts</span>
+                  <span>
+                    <a href="mailto:nudensatin@gmail.com" className="underline hover:text-[#aa8960]">nudensatin@gmail.com</a>
+                  </span>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-lg mt-8">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83285.16669239991!2d-123.20313810688907!3d49.28281178752603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0xbb9196ea9b81f38b!2z0JLQsNC90LrRg9Cy0LXRgCwg0JHRgNC40YLQsNC90YHQutCw0Y8g0JrQvtC70YPQvNCx0LjRjywg0JrQsNC90LDQtNCw!5e0!3m2!1sru!2sua!4v1751052835254!5m2!1sru!2sua"
+                  width="100%"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+            <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
+              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
+              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <textarea placeholder="Type your message" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
+              <button type="submit" className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider">
+                Send message
+              </button>
+            </form>
+          </div>
+        </section>
       </main>
-
-      {/* Footer */}
-      <footer className="mt-16 py-8 bg-[#f8f2eb] border-t border-[#ebddc7] text-center text-[#715f4a]">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 px-4">
-          <div className="text-sm">
-            © {new Date().getFullYear()} Nude’n Satin Cattery. All rights reserved.
-          </div>
-          <div className="flex gap-4 justify-center">
-            <Link href="/breed-info" className="hover:underline">
-              Breed Info
-            </Link>
-            <Link href="/gallery" className="hover:underline">
-              Gallery
-            </Link>
-            <a
-              href="https://instagram.com/" // замени ссылку!
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
-              Instagram
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

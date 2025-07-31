@@ -2,17 +2,18 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Head from "next/head";
-import Header from '../components/Header.tsx'
+import Header from '../components/Header'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
+import SmartImage from '../components/SmartImage.tsx';
 
 // ——— Данные для родителей и котят ———
 const parents = [
   {
-    name: "Bullochka",
+    name: "Bulochka",
     desc: "Our king. Gentle, charismatic and affectionate. Heterochromia (odd eyes). Warm and very social.",
     images: [
       "/images/bulochka/bulochka1.jpg",
@@ -68,13 +69,15 @@ const kittens = [
     name: "Light Girl",
     features: ["Blue eyes", "Cream-pink", "Gentle & sociable"],
     price: "2000–3000$",
-    images: Array.from({ length: 15 }, (_, i) => `/images/Litter1/litter${70 + i}.jpg`)
-  }
+    images: [
+      ...Array.from({ length: 14 }, (_, i) => `/images/Litter1/litter${70 + i}.jpg`),
+      '/images/Litter1/litter85.jpg'
+    ]  }
 ];
 
 const parents2 = [
   {
-    name: "Bullochka",
+    name: "Bulochka",
     desc: "Our king. Gentle, charismatic and affectionate.",
     images: [
       "/images/bulochka/bulochka1.jpg",
@@ -82,7 +85,7 @@ const parents2 = [
     ]
   },
   {
-    name: "Afeliya",
+    name: "Ofelya",
     desc: "Our queen. Graceful, wise, and a caring mother.",
     images: [
       "/images/afelia/afelia1.jpg",
@@ -113,76 +116,66 @@ export default function Sphynxes() {
       <Header />
 
       <main className="max-w-7xl mx-auto py-10 px-4">
-        <h1 className="text-4xl font-bold text-center mb-10">Our Sphynxes</h1>
+        <h1 className="text-4xl font-bold text-center mb-10">Our Sphynxes: First Litter</h1>
 
-        {/* Родители */}
-        <section className="mb-16">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {parents.map((p, i) => (
-              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-glow hover:shadow-lg">                
-              <div className="w-full max-w-sm mb-4">                 
-                 <Slider {...sliderSettings}>
-                    {p.images.map((src, idx) => (
-                      <div key={idx} onClick={() => { setSlides(p.images.map(s => ({ src: s }))); setIndex(idx); setOpen(true); }}>                        <img src={src} alt={p.name} className="rounded-xl w-full object-cover h-80" />
+        
+                {/* Первый помёт */}
+        
+        <div className="litter-block mb-20">
+          <div className="parents flex justify-center items-center mb-3">
+            <img src="/images/bulochka/bulochka1.jpg" className="parent-img" alt="Bullochka" />
+            <span className="mx-2 text-2xl font-bold">×</span>
+            <img src="/images/vera/vera1.jpg" className="parent-img" alt="Vera" />
+          </div>
+          <div className="parents-names flex justify-center mb-4">
+            <span className="font-semibold mr-2">Bullochka</span>
+            <span className="font-semibold ml-2">Vera</span>
+          </div>
+          <div className="arrow-down mx-auto"></div>
+          <div className="grid md:grid-cols-2 gap-10">
+            {kittens.map((kitten, i) => (
+              <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start hover-glow hover:shadow-lg">
+                <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
+                  <Slider {...sliderSettings}>
+                    {kitten.images.map((src, idx) => (
+                      <div key={idx} onClick={() => { setSlides(kitten.images.map(s => ({ src: s }))); setIndex(idx); setOpen(true); }}>
+                        <img src={src} alt={kitten.name} className="rounded-xl w-full object-cover h-64" />
                       </div>
                     ))}
                   </Slider>
                 </div>
-                <h2 className="text-2xl font-bold mb-1">{p.name}</h2>
-                <p className="text-lg text-[#5c4535] mb-2 text-center">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Котята */}
-        <h2 className="text-3xl font-bold text-center mb-6">Kittens from First Litter</h2>
-        <section className="mb-20 grid md:grid-cols-2 gap-10">
-          {kittens.map((kitten, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start hover-glow hover:shadow-lg">              <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-6">
-                <Slider {...sliderSettings}>
-                  {kitten.images.map((src, idx) => (
-                    <div key={idx} onClick={() => { setSlides(kitten.images.map(s => ({ src: s }))); setIndex(idx); setOpen(true); }}>
-                      <img src={src} alt={kitten.name} className="rounded-xl w-full object-cover h-64" />
-                    </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">{kitten.name}</h3>
+                  <ul className="list-disc list-inside mb-2">
+                    {kitten.features.map((f, idx) => <li key={idx}>{f}</li>)}
+                  </ul>
+                  <div className="font-semibold text-[#ac824e] mb-1">Price: <span className="text-base">{kitten.price}</span></div>
+                  <div className="text-sm text-[#6c584a]">* Final price depends on age, appearance & personality</div>
+                </div>
+                </div>
                   ))}
-                </Slider>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold mb-2">{kitten.name}</h3>
-                <ul className="list-disc list-inside mb-2">
-                  {kitten.features.map((f, idx) => <li key={idx}>{f}</li>)}
-                </ul>
-                <div className="font-semibold text-[#ac824e] mb-1">Price: <span className="text-base">{kitten.price}</span></div>
-                <div className="text-sm text-[#6c584a]">* Final price depends on age, appearance & personality</div>
-              </div>
-            </div>
-          ))}
-        </section>
+          </div>
+        </div>
 
         {/* Второй помёт */}
-        <h2 className="text-3xl font-bold text-center mb-6">Second Litter (Coming Soon)</h2>
-        <section className="mb-20 grid md:grid-cols-2 gap-12 items-start">
-          {parents2.map((p, i) => (
-            <div key={i} className="bg-[#fff] rounded-2xl shadow-lg p-6 flex flex-col items-center hover-glow hover:shadow-lg">              <div className="w-full max-w-sm mb-4">
-                <Slider {...sliderSettings}>
-                  {p.images.map((src, idx) => (
-                    <div key={idx}>
-                      <img src={src} alt={p.name} className="rounded-xl w-full object-cover h-80" />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-              <h2 className="text-2xl font-bold mb-1">{p.name}</h2>
-              <p className="text-lg text-[#5c4535] mb-2 text-center">{p.desc}</p>
-            </div>
-          ))}
-        </section>
-        <div className="rounded-xl bg-[#fae9d7] border-2 border-[#e4c8a4] p-8 flex flex-col items-center mb-16">
-          <img src="/images/coming-soon-banner.jpg" alt="Coming soon" className="w-full max-w-2xl rounded-xl mb-5 shadow" />
-          <h3 className="text-2xl font-bold text-[#b0895b] mb-2">Kittens Coming Soon!</h3>
-          <p className="text-center text-lg">Pre-order for the second litter is open. Reserve your kitten today!</p>
-        </div>
+          <h2 className="text-3xl font-bold text-center mb-6">Second Litter (Coming Soon)</h2>
+          <div className="litter-block mb-20">
+          <div className="parents flex justify-center items-center mb-3">
+            <img src="/images/bulochka/bulochka1.jpg" className="parent-img" alt="Bullochka" />
+            <span className="mx-2 text-2xl font-bold">×</span>
+            <img src="/images/afelia/afelia1.jpg" className="parent-img" alt="Afeliya" />
+          </div>
+          <div className="parents-names flex justify-center mb-4">
+            <span className="font-semibold mr-2">Bullochka</span>
+            <span className="font-semibold ml-2">Afeliya</span>
+          </div>
+          <div className="arrow-down mx-auto"></div>
+          <div className="rounded-xl bg-[#fae9d7] border-2 border-[#e4c8a4] p-8 flex flex-col items-center">
+            <img src="/images/coming-soon-banner.jpg" alt="Coming soon" className="w-full max-w-2xl rounded-xl mb-5 shadow" />
+            <h3 className="text-2xl font-bold text-[#b0895b] mb-2">Kittens Coming Soon!</h3>
+            <p className="text-center text-lg">Pre-order for the second litter is open. Reserve your kitten today!</p>
+          </div>
+      </div>
       </main>
         {open && (
         <Lightbox open={open} close={() => setOpen(false)} slides={slides} index={index} />
@@ -256,10 +249,6 @@ export default function Sphynxes() {
     </form>
   </div>
 </section>
-
-      <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
-      </footer>
     </div>
   );
 }

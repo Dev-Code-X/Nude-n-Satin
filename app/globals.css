@@ -36,3 +36,31 @@ body {
     @apply transition-all duration-300 ease-out hover:scale-105 hover:text-[#ac824e] hover:bg-[#f7f0e7];
   }
 }
+
+@layer utilities {
+  .animate-fade-up {
+    opacity: 1 !important;
+    transform: translateY(0px) scale(1) !important;
+    transition: all 0.7s cubic-bezier(.23,1.1,.32,1) !important;
+  }
+
+  .anim-scroll {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+}
+  .btn-primary {
+    @apply inline-block px-8 py-3 bg-[#57382d] text-white rounded-xl font-semibold text-lg shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:bg-[#77524b];
+  }
+
+@layer components {
+  .litter-block {
+    @apply bg-[#fffaf5] rounded-2xl border-2 border-[#e4c8a4] p-6;
+  }
+  .parent-img {
+    @apply w-32 h-32 object-cover rounded-xl shadow-md;
+  }
+  .arrow-down {
+    @apply w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-[#e4c8a4] my-4;
+  }
+}

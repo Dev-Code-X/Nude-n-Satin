@@ -1,17 +1,18 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Head from 'next/head';
-import Header from '../components/Header.tsx'
+import Header from '../components/Header'
 import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
+import SmartImage from '../components/SmartImage.tsx';
 
 
-// ----- Галерея
-const galleryBlocks = [
+// ----- Галерея (без первого помёта)
+const baseBlocks = [
   {
-    title: 'Bullochka — Our King',
+    title: 'Bulochka — Our King',
     description: 'The main sire of Nude’n Satin. Gentle, charismatic and affectionate.',
     media: [
       { src: '/images/bulochka/bulochka1.jpg', type: 'img' },
@@ -33,7 +34,7 @@ const galleryBlocks = [
     ],
   },
   {
-    title: 'Afeliya — Our Queen',
+    title: 'Ofelya — Our Queen',
     description: 'Graceful, wise, and a caring mother.',
     media: [
       { src: '/images/afelia/afelia1.jpg', type: 'img', objectPosition: "top center" },
@@ -99,17 +100,7 @@ const galleryBlocks = [
       { type: 'video', src: '/images/vera/vera16.mp4', poster: '/images/vera/vera1616.jpg' },
     ],
   },
-  {
-    title: 'First Litter — Bullochka × Vera',
-    description: 'Born from Bullochka and Vera, wonderful kittens.',
-    media: [
-      ...Array.from({ length: 68 }, (_, i) => ({
-        src: `/images/Litter1/litter${i + 1}.jpg`,
-        type: 'img'
-      }))
-    ],
-  },
-  {
+    {
     title: 'Second Litter — Bullochka × Afeliya',
     description: 'Parents: Bullochka & Afeliya. Photos coming soon.',
     media: [
@@ -118,28 +109,58 @@ const galleryBlocks = [
   },
 ];
 
-// Формируем массив для лайтбокса с поддержкой видео!
-const slides = galleryBlocks.flatMap(block =>
-  block.media.map(item =>
-    item.type === 'img'
-      ? { src: item.src, type: 'image' }
-      : {
-          type: 'video',
-          sources: [{ src: item.src, type: 'video/mp4' }],
-          poster: item.poster,
-        }
-  )
-);
-
-let cursor = 0;
-const offsets = galleryBlocks.map(block => {
-  const start = cursor; cursor += block.media.length; return start;
-});
-
+const firstLitterBlock = {
+  title: 'First Litter — Bullochka × Vera',
+  description: 'Born from Bullochka and Vera, wonderful kittens.',
+  media: Array.from({ length: 68 }, (_, i) => ({
+    src: `/images/Litter1/litter${i + 1}.jpg`,
+    type: 'img',
+  })),
+};
+const secondLitterBlock = baseBlocks.pop();
 export default function Gallery() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+ const [galleryBlocks, setGalleryBlocks] = useState([...baseBlocks, secondLitterBlock]);
 
+  const slides = useMemo(
+    () =>
+      galleryBlocks.flatMap(block =>
+        block.media.map(item =>
+          item.type === 'img'
+            ? { src: item.src, type: 'image' }
+            : {
+                type: 'video',
+                sources: [{ src: item.src, type: 'video/mp4' }],
+                poster: item.poster,
+              }
+        )
+      ),
+    [galleryBlocks]
+  );
+
+  const offsets = useMemo(() => {
+    let cursor = 0;
+    return galleryBlocks.map(block => {
+      const start = cursor;
+      cursor += block.media.length;
+      return start;
+    });
+  }, [galleryBlocks]);
+
+  useEffect(() => {
+    const checkImages = async () => {
+      const results = await Promise.all(
+        firstLitterBlock.media.map(m =>
+          fetch(m.src, { method: 'HEAD' }).then(r => r.ok).catch(() => false)
+        )
+      );
+      if (results.every(Boolean)) {
+        setGalleryBlocks([...baseBlocks, firstLitterBlock, secondLitterBlock]);
+      }
+    };
+    checkImages();
+  }, []);
 
   // ---- Анимация появления блоков при скролле
   useEffect(() => {
@@ -202,15 +223,16 @@ export default function Gallery() {
                 return (
                   <div
                     key={gi}
-                    className="relative rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition hover:scale-105 hover:bg-[#f7f0e7]"                    style={{ aspectRatio: '4/3', minHeight: 230 }}
+                    className="relative rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer hover-scale hover:bg-[#f7f0e7]"
+                    style={{ aspectRatio: '4/3', minHeight: 230 }}
                     onClick={() => { setIndex(gi); setOpen(true); }}
                   >
-                    {m.type === 'img' ? (
-                      <img
-                        src={m.src}
-                        alt=""
-                        className="w-full h-full object-cover"
-                        style={extraImgStyle}
+                      {m.type === 'img' ? (
+                        <SmartImage
+                          src={m.src}
+                          alt=""
+                          className="w-full h-full"
+                          style={extraImgStyle}
                       />
                     ) : (
                       <div className="relative w-full h-full">
@@ -292,10 +314,6 @@ export default function Gallery() {
           </div>
         </section>
       </main>
-
-      <footer className="text-center py-8 md:py-10 bg-[#f5e6da] text-sm">
-        © Nude&apos;n Satin. All rights Reserved. Created by DevCodeX.
-      </footer>
 
       {/* --- SCROLL FADE-UP ANIMATION --- */}
       <style jsx global>{`
