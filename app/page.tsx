@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from './components/Header';
-import SmartImage from './components/SmartImage.tsx';
+import SmartImage from './components/SmartImage';
 
 export default function Home() {
 

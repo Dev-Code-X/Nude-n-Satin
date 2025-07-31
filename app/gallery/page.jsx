@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
-import SmartImage from '../components/SmartImage.tsx';
+import SmartImage from '../components/SmartImage';
 
 
 // ----- Галерея (без первого помёта)
