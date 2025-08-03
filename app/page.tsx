@@ -4,6 +4,20 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from './components/Header';
 import SmartImage from './components/SmartImage';
+import Head from 'next/head';
+
+const keywords = [
+  'sphynx cat', 'sphynx kitten', 'hairless cat', 'canadian sphynx', 'sphynx cattery', 'sphynx breeder', 'sphynx adoption', 'sphynx kittens for sale', 'elite cattery', 'hypoallergenic cat',
+  'sphynx health', 'sphynx care', 'sphynx grooming', 'sphynx diet', 'sphynx personality', 'sphynx temperament', 'sphynx kitten price', 'sphynx cat Canada', 'sphynx kittens Canada', 'sphynx breeder Canada',
+  'hairless kitten', 'naked cat', 'sphynx home', 'sphynx cat video', 'cat show sphynx', 'champion sphynx', 'sphynx cat photos', 'hairless cat pictures', 'sphynx kitten delivery', 'sphynx cat vaccination',
+  'sphynx cat shipping', 'sphynx cattery Vancouver', 'sphynx cattery British Columbia', 'sphynx kittens Vancouver', 'sphynx kittens BC', 'cfa sphynx breeder', 'tica sphynx breeder', 'sphynx kitten reservation', 'sphynx adoption Canada', 'sphynx cat grooming tips',
+  'sphynx cat health guarantee', 'sphynx cat colors', 'sphynx cat patterns', 'hairless cat love', 'exotic sphynx', 'purebred sphynx', 'rare sphynx', 'blue sphynx', 'odd-eyed sphynx', 'family sphynx pet',
+  'канадский сфинкс', 'купить сфинкса', 'питомник сфинксов', 'сфинкс котенок', 'голый кот', 'котенок без шерсти', 'элитный питомник', 'сфинкс заводчик', 'сфинкс Канада', 'продажа сфинксов',
+  'сфинкс цены', 'уход за сфинксом', 'здоровье сфинкса', 'кормление сфинкса', 'характер сфинкса', 'сфинкс фото', 'сфинкс видео', 'сфинкс доставка', 'прививки сфинкса', 'выставка сфинксов',
+  'породистый сфинкс', 'редкий сфинкс', 'голубой сфинкс', 'разноглазый сфинкс', 'канадский сфинкс купить', 'котята сфинкса Ванкувер', 'сфинксы в Канаде', 'сфинкс на заказ', 'лучший питомник сфинксов', 'сертифицированный питомник',
+  'канадский сфинкс цена', 'уход за кожей сфинкса', 'гипоаллергенный кот', 'лысый котенок', 'сфинкс здоровье', 'сфинкс характер', 'сфинкс в добрые руки', 'сфинкс окрасы', 'элитные котята', 'канадский сфинкс Ванкувер',
+  'заводчик сфинксов Канада', 'фото котят сфинкса', 'любовь к сфинксам', 'отзыв о питомнике', 'рекомендации по содержанию', 'официальные документы CFA', 'TICA сертификат', 'международный питомник сфинксов', 'розовые сфинксы', 'котята шоу-класса'
+].join(', ');
 
 export default function Home() {
 
@@ -46,11 +60,16 @@ export default function Home() {
   return (
     <div className="bg-[#fff8f3] text-[#3d2b1f] font-sans">
     
-    
+      <Head>
+        <title>Nude&apos;n Satin Cattery</title>
+        <meta name="description" content="Nude&apos;n Satin is an elite Canadian Sphynx cattery in Vancouver offering healthy hairless kittens and professional support." />
+        <meta name="keywords" content={keywords} />
+      </Head>
+
       {/* Header */}
       <Header isHome />
       <section className="w-full anim-scroll opacity-0 transition-all duration-700 ">
-        <img src="/images/banner.png" alt="Nude'n Satin Banner" className="w-full h-auto object-cover" />
+        <img src="/images/banner.png" alt="Nude'n Satin Banner" className="w-full h-auto object-contain" />
       </section>
 
       <main className="px-4 md:px-8 py-0 space-y-16 md:space-y-24" >
@@ -84,14 +103,14 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 1 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow">
                 <img src="/icons/health.svg" alt="Healthy Sphynxes" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Exceptional Health</h3>
                 <p className="text-base text-[#71604a] text-center">
                   All of our Sphynxes are tested and cleared for skin health, heart conditions, and genetic issues, certified with leading veterinary organizations.
                 </p>
               </div>
               {/* Карточка 2 */}
-                <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
+                <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow">
                   <img src="/icons/instructions.svg" alt="Useful Instructions" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Clear Instructions</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We will provide CFA papers, health records, feeding instructions, and a care manual for your Sphynx kitten.
@@ -100,14 +119,14 @@ export default function Home() {
             </div>
             <div className="flex flex-col md:flex-row gap-7 w-full">
               {/* Карточка 3 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow">
                  <img src="/icons/contact.svg" alt="Always in Touch" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Always In Touch</h3>
                 <p className="text-base text-[#71604a] text-center">
                   We keep in touch with new owners, checking the Sphynxes’ condition and offering ongoing support from time to time.
                 </p>
               </div>
               {/* Карточка 4 */}
-              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-scale">
+              <div className="flex-1 p-7 rounded-2xl bg-[#f8f2eb] border border-[#ebddc7] flex flex-col items-center shadow-md hover-glow">
                 <img src="/icons/advice.svg" alt="Useful Advice" className="h-12 w-12 mb-4" />                <h3 className="font-semibold text-xl mb-2">Expert Advice</h3>
                 <p className="text-base text-[#71604a] text-center">
                   Free advice on grooming, socializing, adaptation and every stage of your Sphynx’s happy life.
@@ -121,7 +140,7 @@ export default function Home() {
           <h2 className="text-3xl font-semibold text-center mb-15">Our Sphynxes</h2>
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 px-2 md:px-6">
             {/* КОТ 1 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
               <SmartImage src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72" />              <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Bulochka</h3>              
                 <p className="text-base text-gray-500 mb-2">King (Father)</p>
@@ -129,7 +148,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 2 */}
-            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
               <SmartImage src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72" />              
               <div className="flex flex-col justify-center p-6">             
     
@@ -139,7 +158,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 3 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
               <SmartImage src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72" />              
               <div className="flex flex-col justify-center p-6">               
                <h3 className="text-2xl font-bold mb-1">Liliana</h3>
@@ -148,7 +167,7 @@ export default function Home() {
               </div>
             </div>
             {/* КОТ 4 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-scale">
+             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
               <SmartImage src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72" />              
               <div className="flex flex-col justify-center p-6">              
                 <h3 className="text-2xl font-bold mb-1">Vera</h3>
@@ -194,7 +213,7 @@ export default function Home() {
                 a: "12–15 years with good care! Veterinary checkups and a balanced diet keep your friend healthy and happy.",
               },
             ].map(({ q, a }, i) => (
-              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover-scale">
+              <div key={i} className="bg-white/90 rounded-2xl shadow-md p-6 border border-[#e4d3be] hover-glow">
                 <h3 className="font-bold mb-2">{q}</h3>
                 <p className="text-sm text-[#715f4a]">{a}</p>
               </div>
@@ -264,13 +283,14 @@ export default function Home() {
                 ></iframe>
               </div>
             </div>
-            <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
-              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
-              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <textarea placeholder="Type your message" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
-              <button type="submit" className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider">
-                Send message
+            <form action="https://formsubmit.co/el/milaji" method="POST" className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="Новое сообщение с сайта Nude’n Satin!" />              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
+              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <textarea placeholder="Type your message" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
+              <button type="submit" className="btn-primary">
+               Send message
               </button>
             </form>
           </div>

@@ -6,6 +6,19 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/Header'
 
+const keywords = [
+  'sphynx cat', 'sphynx kitten', 'hairless cat', 'canadian sphynx', 'sphynx cattery', 'sphynx breeder', 'sphynx adoption', 'sphynx kittens for sale', 'elite cattery', 'hypoallergenic cat',
+  'sphynx health', 'sphynx care', 'sphynx grooming', 'sphynx diet', 'sphynx personality', 'sphynx temperament', 'sphynx kitten price', 'sphynx cat Canada', 'sphynx kittens Canada', 'sphynx breeder Canada',
+  'hairless kitten', 'naked cat', 'sphynx home', 'sphynx cat video', 'cat show sphynx', 'champion sphynx', 'sphynx cat photos', 'hairless cat pictures', 'sphynx kitten delivery', 'sphynx cat vaccination',
+  'sphynx cat shipping', 'sphynx cattery Vancouver', 'sphynx cattery British Columbia', 'sphynx kittens Vancouver', 'sphynx kittens BC', 'cfa sphynx breeder', 'tica sphynx breeder', 'sphynx kitten reservation', 'sphynx adoption Canada', 'sphynx cat grooming tips',
+  'sphynx cat health guarantee', 'sphynx cat colors', 'sphynx cat patterns', 'hairless cat love', 'exotic sphynx', 'purebred sphynx', 'rare sphynx', 'blue sphynx', 'odd-eyed sphynx', 'family sphynx pet',
+  'канадский сфинкс', 'купить сфинкса', 'питомник сфинксов', 'сфинкс котенок', 'голый кот', 'котенок без шерсти', 'элитный питомник', 'сфинкс заводчик', 'сфинкс Канада', 'продажа сфинксов',
+  'сфинкс цены', 'уход за сфинксом', 'здоровье сфинкса', 'кормление сфинкса', 'характер сфинкса', 'сфинкс фото', 'сфинкс видео', 'сфинкс доставка', 'прививки сфинкса', 'выставка сфинксов',
+  'породистый сфинкс', 'редкий сфинкс', 'голубой сфинкс', 'разноглазый сфинкс', 'канадский сфинкс купить', 'котята сфинкса Ванкувер', 'сфинксы в Канаде', 'сфинкс на заказ', 'лучший питомник сфинксов', 'сертифицированный питомник',
+  'канадский сфинкс цена', 'уход за кожей сфинкса', 'гипоаллергенный кот', 'лысый котенок', 'сфинкс здоровье', 'сфинкс характер', 'сфинкс в добрые руки', 'сфинкс окрасы', 'элитные котята', 'канадский сфинкс Ванкувер',
+  'заводчик сфинксов Канада', 'фото котят сфинкса', 'любовь к сфинксам', 'отзыв о питомнике', 'рекомендации по содержанию', 'официальные документы CFA', 'TICA сертификат', 'международный питомник сфинксов', 'розовые сфинксы', 'котята шоу-класса'
+].join(', ');
+
 // TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
 const sphynxTypes = [
   {
@@ -187,7 +200,7 @@ const breedSections = [
             className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale"          >            <img
               src={t.img}
               alt={t.title}
-              className="w-32 h-32 object-cover rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
+            className="w-32 h-32 object-contain rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
             />
             <div>
               <div className="font-bold text-lg mb-1 text-[#ac824e]">{t.title}</div>
@@ -252,6 +265,8 @@ export default function BreedInfo() {
       <Head>
         <title>Breed Info | Nude’n Satin - Canadian Sphynx Cattery</title>
         <meta name="description" content="Everything about the Canadian Sphynx: history, types, character, care, health, facts. With unique photos from our cattery!" />
+        <meta name="keywords" content={keywords} />
+
       </Head>
        <Header />
 
@@ -282,7 +297,7 @@ export default function BreedInfo() {
       <img
         src={breedSections[tab].img}
         alt={breedSections[tab].title}
-        className="rounded-2xl shadow-lg object-cover w-full md:w-72 h-56 md:h-64 mb-4 md:mb-0"
+        className="rounded-2xl shadow-lg object-contain w-full md:w-72 h-auto md:max-h-64 mb-4 md:mb-0"
         style={tab % 2 ? { order: 2 } : {}}
       />
     )}
@@ -339,32 +354,33 @@ export default function BreedInfo() {
         ></iframe>
       </div>
     </div>
-    <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
-      <input
+    <form action="https://formsubmit.co/el/milaji" method="POST" className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_subject" value="Новое сообщение с сайта Nude’n Satin!" />      <input
         type="text"
         placeholder="Enter your full name*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
+        className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
         required
       />
       <input
         type="tel"
         placeholder="Enter your phone number*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
+        className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
       />
       <input
         type="email"
         placeholder="Enter your e-mail*"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
+        className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
         required
       />
       <textarea
         placeholder="Type your message"
-        className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
+        className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition"
         rows={4}
       ></textarea>
       <button
         type="submit"
-        className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider"
+        className="btn-primary"
       >
         Send message
       </button>

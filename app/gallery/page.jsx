@@ -8,6 +8,19 @@ import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
 import SmartImage from '../components/SmartImage';
 
+const keywords = [
+  'sphynx cat', 'sphynx kitten', 'hairless cat', 'canadian sphynx', 'sphynx cattery', 'sphynx breeder', 'sphynx adoption', 'sphynx kittens for sale', 'elite cattery', 'hypoallergenic cat',
+  'sphynx health', 'sphynx care', 'sphynx grooming', 'sphynx diet', 'sphynx personality', 'sphynx temperament', 'sphynx kitten price', 'sphynx cat Canada', 'sphynx kittens Canada', 'sphynx breeder Canada',
+  'hairless kitten', 'naked cat', 'sphynx home', 'sphynx cat video', 'cat show sphynx', 'champion sphynx', 'sphynx cat photos', 'hairless cat pictures', 'sphynx kitten delivery', 'sphynx cat vaccination',
+  'sphynx cat shipping', 'sphynx cattery Vancouver', 'sphynx cattery British Columbia', 'sphynx kittens Vancouver', 'sphynx kittens BC', 'cfa sphynx breeder', 'tica sphynx breeder', 'sphynx kitten reservation', 'sphynx adoption Canada', 'sphynx cat grooming tips',
+  'sphynx cat health guarantee', 'sphynx cat colors', 'sphynx cat patterns', 'hairless cat love', 'exotic sphynx', 'purebred sphynx', 'rare sphynx', 'blue sphynx', 'odd-eyed sphynx', 'family sphynx pet',
+  'канадский сфинкс', 'купить сфинкса', 'питомник сфинксов', 'сфинкс котенок', 'голый кот', 'котенок без шерсти', 'элитный питомник', 'сфинкс заводчик', 'сфинкс Канада', 'продажа сфинксов',
+  'сфинкс цены', 'уход за сфинксом', 'здоровье сфинкса', 'кормление сфинкса', 'характер сфинкса', 'сфинкс фото', 'сфинкс видео', 'сфинкс доставка', 'прививки сфинкса', 'выставка сфинксов',
+  'породистый сфинкс', 'редкий сфинкс', 'голубой сфинкс', 'разноглазый сфинкс', 'канадский сфинкс купить', 'котята сфинкса Ванкувер', 'сфинксы в Канаде', 'сфинкс на заказ', 'лучший питомник сфинксов', 'сертифицированный питомник',
+  'канадский сфинкс цена', 'уход за кожей сфинкса', 'гипоаллергенный кот', 'лысый котенок', 'сфинкс здоровье', 'сфинкс характер', 'сфинкс в добрые руки', 'сфинкс окрасы', 'элитные котята', 'канадский сфинкс Ванкувер',
+  'заводчик сфинксов Канада', 'фото котят сфинкса', 'любовь к сфинксам', 'отзыв о питомнике', 'рекомендации по содержанию', 'официальные документы CFA', 'TICA сертификат', 'международный питомник сфинксов', 'розовые сфинксы', 'котята шоу-класса'
+].join(', ');
+
 
 // ----- Галерея (без первого помёта)
 const baseBlocks = [
@@ -108,12 +121,12 @@ const baseBlocks = [
     ],
   },
 ];
-
+const firstLitterNumbers = Array.from({ length: 85 }, (_, i) => i + 1).filter(n => n !== 69 && n !== 84);
 const firstLitterBlock = {
   title: 'First Litter — Bullochka × Vera',
   description: 'Born from Bullochka and Vera, wonderful kittens.',
-  media: Array.from({ length: 68 }, (_, i) => ({
-    src: `/images/Litter1/litter${i + 1}.jpg`,
+  media: firstLitterNumbers.map(n => ({
+    src: `/images/Litter1/litter${n}.jpg`,
     type: 'img',
   })),
 };
@@ -152,7 +165,7 @@ export default function Gallery() {
     const checkImages = async () => {
       const results = await Promise.all(
         firstLitterBlock.media.map(m =>
-          fetch(m.src, { method: 'HEAD' }).then(r => r.ok).catch(() => false)
+          fetch(m.src).then(r => r.ok).catch(() => false)
         )
       );
       if (results.every(Boolean)) {
@@ -204,6 +217,8 @@ export default function Gallery() {
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
         <title>Gallery | Nude&apos;n Satin - Canadian Sphynx Cattery</title>
+        <meta name="description" content="Explore photos and videos of our Canadian Sphynxes and kittens at Nude'n Satin cattery." />
+        <meta name="keywords" content={keywords} />
       </Head>
       {/* --- МЕНЮ --- */}
       <Header />
@@ -302,12 +317,13 @@ export default function Gallery() {
                 ></iframe>
               </div>
             </div>
-            <form className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
-              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
-              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <textarea placeholder="Type your message" className="p-3 border border-[#ebddc7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
-              <button type="submit" className="px-6 py-3 bg-[#d6b890] text-[#473b2a] rounded-lg hover:bg-[#edd6b6] transition font-semibold shadow uppercase tracking-wider">
+            <form action="https://formsubmit.co/el/milaji" method="POST" className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="Новое сообщение с сайта Nude’n Satin!" />              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
+              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
+              <textarea placeholder="Type your message" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
+              <button type="submit" className="btn-primary">                
                 Send message
               </button>
             </form>

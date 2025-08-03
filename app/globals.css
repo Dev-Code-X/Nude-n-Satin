@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 1) The overall strip that holds the row of thumbs */
+.yarl-thumbnails {
+  background-color: transparent !important;
+  padding: 8px 0 !important;
+}
+
+/* 2) Each thumbnail “slot” that holds the image */
+.yarl-thumbnails__container,
+.yarl-thumbnail__image-container {
+  background-color: transparent !important;
+  box-shadow: none           !important;
+  margin: 0 4px              !important;  /* horizontal gutter */
 }
 
 @theme inline {
@@ -58,7 +67,7 @@ body {
     @apply bg-[#fffaf5] rounded-2xl border-2 border-[#e4c8a4] p-6;
   }
   .parent-img {
-    @apply w-32 h-32 object-cover rounded-xl shadow-md;
+    @apply w-32 h-32 object-contain rounded-xl shadow-md;
   }
   .arrow-down {
     @apply w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-[#e4c8a4] my-4;

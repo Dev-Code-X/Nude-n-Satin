@@ -4,7 +4,7 @@ import smartcrop from 'smartcrop';
 
 type SmartImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
-export default function SmartImage({ src = '', alt = '', className = '', ...rest }: SmartImageProps) {
+export default function SmartImage({ src = '', alt = '', className = '', loading = 'lazy', ...rest }: SmartImageProps) {
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -25,5 +25,5 @@ export default function SmartImage({ src = '', alt = '', className = '', ...rest
     };
   }, [src]);
 
-  return <img ref={imgRef} src={src} alt={alt} className={`object-cover object-center ${className}`} {...rest} />;
+      return <img ref={imgRef} src={src} alt={alt} className={`object-cover object-center ${className}`} loading={loading} {...rest} />;
 }
