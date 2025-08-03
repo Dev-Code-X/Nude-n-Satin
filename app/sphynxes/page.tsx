@@ -97,10 +97,10 @@ const lightboxStyles: Record<string, LooseCssProperties> = {
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
-        <title>Our Sphynxes | Nude'n Satin Cattery</title>
+        <title>Our Sphynxes | Nude&apos;n Satin Cattery</title>
         <meta
           name="description"
-          content="Meet our Canadian Sphynx cats and kittens from Nude'n Satin cattery."
+          content="Meet our Canadian Sphynx cats and kittens from Nude&apos;n Satin cattery."
         />
         <meta name="keywords" content={keywords} />
       </Head>
