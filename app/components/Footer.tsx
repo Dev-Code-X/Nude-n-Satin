@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#fcf5ef] text-[#715f4a] text-sm md:text-base border-t border-[#e6ddd4] py-6">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
-        <div>© 2025 Nude’n Satin Cattery. All rights reserved. Created DevCodeX.</div>
+        <div>© 2025 Nude&apos;n Satin Cattery. All rights reserved. Created DevCodeX.</div>
         <nav className="flex gap-4">
           <Link href="/breed-info" className="no-underline hover:underline text-[#715f4a]">
             Breed Info
