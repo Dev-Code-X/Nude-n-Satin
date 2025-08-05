@@ -1,6 +1,6 @@
 // app/sphynxes/page.tsx
 'use client';
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import Slider from "react-slick";
