@@ -3,8 +3,8 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from './components/Header';
-import SmartImage from './components/SmartImage';
 import Head from 'next/head';
+import ContactForm from './components/ContactForm';
 
 const keywords = [
   'sphynx cat', 'sphynx kitten', 'hairless cat', 'canadian sphynx', 'sphynx cattery', 'sphynx breeder', 'sphynx adoption', 'sphynx kittens for sale', 'elite cattery', 'hypoallergenic cat',
@@ -85,16 +85,17 @@ export default function Home() {
                 <p>In 2024, Nude’n Satin stands out among other catteries with our focus on aesthetics, modernity, and personalized service. We create not just pets, but family members who inspire and delight.</p>
               </div>
               <div className="flex flex-col gap-6">
-                <SmartImage src="/images/cat5.jpg" alt="Cat 5" className="w-full h-[320px] rounded-xl shadow-md" />
-                <SmartImage src="/images/cat6.jpeg" alt="Cat 6" className="w-full h-[520px] rounded-xl shadow-md" />
+                <img src="/images/cat5.jpg" alt="Cat 5" loading="lazy" className="object-cover object-center w-full h-[320px] rounded-xl shadow-md" />
+                <img src="/images/cat6.jpeg" alt="Cat 6" loading="lazy" className="object-cover object-center w-full h-[520px] rounded-xl shadow-md" />                
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-2 gap-6 h-full">
-              <SmartImage src="/images/cat1.jpeg" alt="Cat 1" className="w-full h-full rounded-xl shadow-md" />
-              <SmartImage src="/images/cat2.jpeg" alt="Cat 2" className="w-full h-full rounded-xl shadow-md" />
-              <SmartImage src="/images/cat3.jpg" alt="Cat 3" className="w-full h-full rounded-xl shadow-md" />
-              <SmartImage src="/images/cat4.jpeg" alt="Cat 4" className="w-full h-full rounded-xl shadow-md" />            </div>
+              <img src="/images/cat1.jpeg" alt="Cat 1" loading="lazy" className="object-cover object-center w-full h-full rounded-xl shadow-md" />
+              <img src="/images/cat2.jpeg" alt="Cat 2" loading="lazy" className="object-cover object-center w-full h-full rounded-xl shadow-md" />
+              <img src="/images/cat3.jpg" alt="Cat 3" loading="lazy" className="object-cover object-center w-full h-full rounded-xl shadow-md" />
+              <img src="/images/cat4.jpeg" alt="Cat 4" loading="lazy" className="object-cover object-center w-full h-full rounded-xl shadow-md" />            
           </div>
+        </div>
         </section>
 
         {/* Why Adopt From Us */}
@@ -141,7 +142,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 px-2 md:px-6">
             {/* КОТ 1 */}
             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <SmartImage src="/images/father.jpg" alt="Bullochka - Father" className="w-full md:w-72 h-72" />              <div className="flex flex-col justify-center p-6">
+              <img src="/images/father.jpg" alt="Bullochka - Father" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />              <div className="flex flex-col justify-center p-6">
                 <h3 className="text-2xl font-bold mb-1">Bulochka</h3>              
                 <p className="text-base text-gray-500 mb-2">King (Father)</p>
                 <p className="text-gray-700">Canadian Sphynx, affectionate, calm and charismatic, the father of many kittens in our cattery.</p>
@@ -149,7 +150,7 @@ export default function Home() {
             </div>
             {/* КОТ 2 */}
             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <SmartImage src="/images/mother1.jpg" alt="Afeliya - Queen Mom" className="w-full md:w-72 h-72" />              
+              <img src="/images/mother1.jpg" alt="Afeliya - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
               <div className="flex flex-col justify-center p-6">             
     
                 <h3 className="text-2xl font-bold mb-1">Ofelya</h3>             
@@ -159,7 +160,7 @@ export default function Home() {
             </div>
             {/* КОТ 3 */}
              <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <SmartImage src="/images/mother2.jpg" alt="Liliana - Queen Mom" className="w-full md:w-72 h-72" />              
+              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
               <div className="flex flex-col justify-center p-6">               
                <h3 className="text-2xl font-bold mb-1">Liliana</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
@@ -168,7 +169,7 @@ export default function Home() {
             </div>
             {/* КОТ 4 */}
              <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <SmartImage src="/images/mother3.jpg" alt="Vera - Queen Mom" className="w-full md:w-72 h-72" />              
+              <img src="/images/mother3.jpg" alt="Vera - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
               <div className="flex flex-col justify-center p-6">              
                 <h3 className="text-2xl font-bold mb-1">Vera</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
@@ -283,16 +284,7 @@ export default function Home() {
                 ></iframe>
               </div>
             </div>
-            <form action="https://formsubmit.co/el/milaji" method="POST" className="bg-white rounded-2xl shadow-md p-6 md:p-10 flex flex-col gap-5 justify-center">
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_subject" value="Новое сообщение с сайта Nude’n Satin!" />              <input type="text" placeholder="Enter your full name*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <input type="tel" placeholder="Enter your phone number*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" />
-              <input type="email" placeholder="Enter your e-mail*" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" required />
-              <textarea placeholder="Type your message" className="p-3 border border-[#57382d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bca485] transition" rows={4}></textarea>
-              <button type="submit" className="btn-primary">
-               Send message
-              </button>
-            </form>
+              <ContactForm />
           </div>
         </section>
       </main>
