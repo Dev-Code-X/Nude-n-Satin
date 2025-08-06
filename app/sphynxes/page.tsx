@@ -26,7 +26,9 @@ const parents = [
   {
     name: "Liliana",
     role: "Mom",
-    images: ["/images/liliana/liliana1.jpg" /* … */],
+    images: ["/images/liliana/liliana1.jpg" 
+      
+    ],
   },
 ];
 
@@ -39,6 +41,7 @@ images: [
       '/images/Litter1/litter64.jpg',
       '/images/Litter1/litter65.jpg',
       '/images/Litter1/litter66.jpg',
+      '/images/Litter1/litter67.jpg',
       '/images/Litter1/litter68.jpg',
       '/images/Litter1/litter69.jpg',
       '/images/Litter1/litter70.jpg',
@@ -46,6 +49,8 @@ images: [
       '/images/Litter1/litter72.jpg',
       '/images/Litter1/litter73.jpg',
       '/images/Litter1/litter74.jpg',
+      '/images/Litter1/litter75.jpg',
+      '/images/Litter1/litter76.jpg',
       '/images/Litter1/litter77.jpg',
       '/images/Litter1/litter78.jpg',
       '/images/Litter1/litter79.jpg',
@@ -59,8 +64,7 @@ images: [
     features: ["Odd-eyed", "Very sweet", "Soft skin"],
     price: "2000–3000$",
 images: [
-        '/images/Litter1/litter6.jpg',
-
+      '/images/Litter1/litter6.jpg',
       '/images/Litter1/litter5.jpg',
       '/images/Litter1/litter7.jpg',
       '/images/Litter1/litter8.jpg',
@@ -82,22 +86,22 @@ images: [
       '/images/Litter1/litter24.jpg',
       '/images/Litter1/litter25.jpg',
       '/images/Litter1/litter99.jpg',
-      '/images/Litter1/litter100.jpg',
-      '/images/Litter1/litter101.jpg',
-      '/images/Litter1/litter102.jpg',
-      '/images/Litter1/litter103.jpg',
-      '/images/Litter1/litter104.jpg',
-      '/images/Litter1/litter105.jpg',
-      '/images/Litter1/litter106.jpg',
-      '/images/Litter1/litter107.jpg',
-      '/images/Litter1/litter109.jpg',
-      '/images/Litter1/litter110.jpg',
-      '/images/Litter1/litter139.jpg',
-      '/images/Litter1/litter140.jpg',
-      '/images/Litter1/litter141.jpg',
-      '/images/Litter1/litter142.jpg',
-      '/images/Litter1/litter143.jpg',
-      '/images/Litter1/litter144.jpg',
+      '/images/Litter1/Litter100.jpg',
+      '/images/Litter1/Litter101.jpg',
+      '/images/Litter1/Litter102.jpg',
+      '/images/Litter1/Litter103.jpg',
+      '/images/Litter1/Litter104.jpg',
+      '/images/Litter1/Litter105.jpg',
+      '/images/Litter1/Litter106.jpg',
+      '/images/Litter1/Litter107.jpg',
+      '/images/Litter1/Litter109.jpg',
+      '/images/Litter1/Litter110.jpg',
+      '/images/Litter1/Litter139.jpg',
+      '/images/Litter1/Litter140.jpg',
+      '/images/Litter1/Litter141.jpg',
+      '/images/Litter1/Litter142.jpg',
+      '/images/Litter1/Litter143.jpg',
+      '/images/Litter1/Litter144.jpg',
     
 
 
