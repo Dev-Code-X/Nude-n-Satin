@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
-import Lightbox, { type LightboxProps } from 'yet-another-react-lightbox';
+import Lightbox from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/styles.css';
@@ -176,15 +176,8 @@ export default function Gallery() {
     });
   }, []);
 
-  // стили для кастомного Lightbox
-  const lightboxStyles = {
-    root: {
-      '--yarl-backdrop-background': 'rgba(248, 242, 235, 0.88)',
-    },
-    container: { backgroundColor: 'transparent' },
-    thumbnails: { backgroundColor: 'transparent', padding: '8px 0' },
-    thumbnail: { backgroundColor: 'transparent', boxShadow: 'none', margin: '0 4px' },
-  };
+  
+  
 
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
