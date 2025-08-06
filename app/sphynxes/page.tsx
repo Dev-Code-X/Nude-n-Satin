@@ -13,8 +13,6 @@ import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import ContactForm from "../components/ContactForm";
 
-type LooseCssProperties = React.CSSProperties & { [key: string]: string };
-
 const keywords = [
   /* …твой список ключевых слов… */
 ].join(", ");
