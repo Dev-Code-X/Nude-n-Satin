@@ -9,8 +9,27 @@ import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import ContactForm from '../components/ContactForm';
+import type { Slide } from 'yet-another-react-lightbox';
 
+interface ImageItem {
+  src: string;
+  type: 'img';
+  objectPosition?: string;
+}
 
+interface VideoItem {
+  src: string;
+  type: 'video';
+  poster: string;
+}
+
+type MediaItem = ImageItem | VideoItem;
+
+interface GalleryBlock {
+  title: string;
+  description: string;
+  media: MediaItem[];
+}
 const keywords = [
   'sphynx cat', 'sphynx kitten', 'hairless cat', 'canadian sphynx',
   'sphynx cattery', 'sphynx breeder', 'sphynx adoption',
@@ -50,7 +69,8 @@ const keywords = [
 ].join(', ');
 
 // === 2) Основные галерейные блоки (родители и другие кошки) ===
-const baseBlocks = [
+const baseBlocks: GalleryBlock[] = [
+
   {
     title: 'Bulochka — Our King',
     description: 'The main sire of Nude’n Satin. Gentle, charismatic and affectionate.',
@@ -119,7 +139,7 @@ const baseBlocks = [
 ];
 
 // === 1) Первый помёт с 162 фото ===
-const firstLitterBlock = {
+const firstLitterBlock: GalleryBlock = {
   title: 'First Litter — Bullochka × Ofelya',
   description: 'Born from Bullochka and Ofelya, wonderful kittens.',
   media: Array.from({ length: 162 }, (_, i) => ({
@@ -129,7 +149,7 @@ const firstLitterBlock = {
 };
 
 // === 3) Второй помёт ===
-const secondLitterBlock = {
+const secondLitterBlock: GalleryBlock = {
   title: 'Second Litter — Bullochka × Afeliya',
   description: 'Parents: Bullochka & Afeliya. Photos coming soon.',
   media: [
@@ -139,7 +159,7 @@ const secondLitterBlock = {
 
 
 // === 4) Собираем все блоки галереи в нужном порядке ===
-const galleryBlocks = [
+const galleryBlocks: GalleryBlock[] = [
   ...baseBlocks,       // сначала родители и «другие кошки»
   firstLitterBlock,    // потом первый помёт
   secondLitterBlock,   // и в самом конце — второй помёт
@@ -150,7 +170,7 @@ export default function Gallery() {
   const [index, setIndex] = useState(0);
 
   // готовим слайды для Lightbox
-  const slides = useMemo(
+  const slides = useMemo<Slide[]>(
     () =>
       galleryBlocks.flatMap(block =>
         block.media.map(item =>
@@ -159,7 +179,7 @@ export default function Gallery() {
             : {
                 type: 'video' as const,
                 sources: [{ src: item.src, type: 'video/mp4' as const }],
-                poster: (item as any).poster,
+                poster: item.poster,
               }
         )
       ),
@@ -220,7 +240,7 @@ export default function Gallery() {
                       <div className="relative w-full h-full">
                         <video
                           src={m.src}
-                          poster={(m as any).poster}
+                          poster={m.poster}
                           muted
                           className="w-full h-full object-cover"
                           preload="metadata"
