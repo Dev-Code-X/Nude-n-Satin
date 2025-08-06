@@ -24,9 +24,9 @@ const parents = [
     images: ["/images/bulochka/bulochka1.jpg" /* … */],
   },
   {
-    name: "Ofeliya",
+    name: "Liliana",
     role: "Mom",
-    images: ["/images/afelia/afelia1.jpg" /* … */],
+    images: ["/images/liliana/liliana1.jpg" /* … */],
   },
 ];
 
