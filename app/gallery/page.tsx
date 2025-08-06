@@ -116,34 +116,12 @@ const baseBlocks = [
     { type: 'video', src: '/images/liliana/liliana12.mp4', poster: '/images/liliana/liliana1212.jpg' },
     ],
   },
-  {
-    title: 'Vera — Our Queen',
-    description: 'Energetic and caring sphynx-mix.',
-    media: [
-      { src: '/images/vera/vera1.jpg', type: 'img' },
-      { src: '/images/vera/vera2.jpg', type: 'img' },
-      { src: '/images/vera/vera3.jpg', type: 'img' },
-      { src: '/images/vera/vera4.jpg', type: 'img' },
-      { src: '/images/vera/vera5.jpg', type: 'img' },
-      { src: '/images/vera/vera6.jpg', type: 'img' },
-      { src: '/images/vera/vera7.jpg', type: 'img' },
-      { src: '/images/vera/vera8.jpg', type: 'img' },
-      { src: '/images/vera/vera9.jpg', type: 'img' },
-      { type: 'video', src: '/images/vera/vera10.mp4', poster: '/images/vera/vera1010.jpg' },
-      { type: 'video', src: '/images/vera/vera11.mp4', poster: '/images/vera/vera1111.jpg' },
-      { type: 'video', src: '/images/vera/vera12.mp4', poster: '/images/vera/vera1212.jpg' },
-      { type: 'video', src: '/images/vera/vera13.mp4', poster: '/images/vera/vera1313.jpg' },
-      { type: 'video', src: '/images/vera/vera14.mp4', poster: '/images/vera/vera1414.jpg' },
-      { type: 'video', src: '/images/vera/vera15.mp4', poster: '/images/vera/vera1515.jpg' },
-      { type: 'video', src: '/images/vera/vera16.mp4', poster: '/images/vera/vera1616.jpg' },
-    ],
-  },
 ];
 
 // === 1) Первый помёт с 162 фото ===
 const firstLitterBlock = {
-  title: 'First Litter — Bullochka × Vera',
-  description: 'Born from Bullochka and Vera, wonderful kittens.',
+  title: 'First Litter — Bullochka × Ofelya',
+  description: 'Born from Bullochka and Ofelya, wonderful kittens.',
   media: Array.from({ length: 162 }, (_, i) => ({
     src: `/images/Litter1/litter${i + 1}.jpg`,
     type: 'img' as const,

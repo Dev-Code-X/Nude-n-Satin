@@ -19,7 +19,7 @@ const keywords = [
   'заводчик сфинксов Канада', 'фото котят сфинкса', 'любовь к сфинксам', 'отзыв о питомнике', 'рекомендации по содержанию', 'официальные документы CFA', 'TICA сертификат', 'международный питомник сфинксов', 'розовые сфинксы', 'котята шоу-класса'
 ].join(', ');
 
-// TYPES of Sphynx — текст с https://ya2aj.weblium.site/breed-information
+// TYPES of Sphynx 
 const sphynxTypes = [
   {
     title: "Classic Type",
@@ -30,7 +30,7 @@ const sphynxTypes = [
   },
   {
     title: "Extreme Type",
-    img: "/images/afelia/afelia18.jpg",
+    img: "/images/afelia/afelia10.jpg",
     desc: `Very similar to the Classic Type, the Extreme Type differs mainly in its distinctive head shape, giving it a bold and unique appearance.
 `
   },
@@ -120,7 +120,7 @@ const breedSections = [
   {
     id: 'care',
     title: 'Care',
-    img: "/images/vera/vera7.jpg",
+    img: "/images/liliana/liliana1.jpg",
     content: (
       <>
         <p>
@@ -155,7 +155,7 @@ const breedSections = [
   {
     id: 'health',
     title: 'Health',
-    img: "/images/vera/vera1.jpg",
+    img: "/images/Litter1/litter107.jpg",
     content: (
       <>
         <p>
@@ -193,13 +193,14 @@ const breedSections = [
       <p className="mb-6 text-lg text-center">
         There are several fascinating varieties of hairless cats. Here’s an overview:
       </p>
-      <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6">
           {sphynxTypes.map((t, idx) => (
           <div
             key={idx}
-            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale"          >            <img
-              src={t.img}
-              alt={t.title}
+            className="bg-[#fff8f3] rounded-2xl shadow-md flex flex-col sm:flex-row items-center p-5 border border-[#ede3d6] hover-scale"          >            
+            <img              
+            src={t.img}
+            alt={t.title}
             className="w-32 h-32 object-contain rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
             />
             <div>
@@ -297,7 +298,7 @@ export default function BreedInfo() {
       <img
         src={breedSections[tab].img}
         alt={breedSections[tab].title}
-        className="rounded-2xl shadow-lg object-contain w-full md:w-72 h-auto md:max-h-64 mb-4 md:mb-0"
+        className="rounded-2xl object-contain w-full md:w-72 h-auto md:max-h-99 mb-4 md:mb-0"
         style={tab % 2 ? { order: 2 } : {}}
       />
     )}

@@ -150,34 +150,37 @@ export default function Home() {
             </div>
             {/* КОТ 2 */}
             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
+              <img
+                src="/images/coming-soon-banner.jpg"
+                alt="Benjamin - Coming Soon"
+                loading="lazy"
+                className="object-cover object-center w-full md:w-72 h-72"
+              />
+              <div className="flex flex-col justify-center p-6">
+                <h3 className="text-2xl font-bold mb-1">Benjamim</h3>
+                <p className="text-base text-gray-500 mb-2">King</p>
+                <p className="text-gray-700">Our Canadian Sphynx king, photo coming soon.</p>
+              </div>
+            </div>
+            {/* КОШКА 3 */}
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
               <img src="/images/mother1.jpg" alt="Afeliya - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
-              <div className="flex flex-col justify-center p-6">             
-    
-                <h3 className="text-2xl font-bold mb-1">Ofelya</h3>             
+               <div className="flex flex-col justify-center p-6">
+                <h3 className="text-2xl font-bold mb-1">Ofelya</h3>           
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
                 <p className="text-gray-700">Gentle and wise, Canadian Sphynx, our affectionate mother cat, always brings up healthy kittens.</p>
               </div>
             </div>
-            {/* КОТ 3 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
-              <div className="flex flex-col justify-center p-6">               
-               <h3 className="text-2xl font-bold mb-1">Liliana</h3>
+            {/* КОШКА 4 */}
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">              <img src="/images/mother2.jpg" alt="Liliana - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
+              <div className="flex flex-col justify-center p-6">
+                <h3 className="text-2xl font-bold mb-1">Liliana</h3>
                 <p className="text-base text-gray-500 mb-2">Queen Mom</p>
                 <p className="text-gray-700">Elegant and playful, our Canadian Sphynx queen, loves to play and cares deeply for her kittens.</p>
               </div>
             </div>
-            {/* КОТ 4 */}
-             <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden anim-scroll opacity-0 transition-all duration-700 hover-glow">
-              <img src="/images/mother3.jpg" alt="Vera - Queen Mom" loading="lazy" className="object-cover object-center w-full md:w-72 h-72" />
-              <div className="flex flex-col justify-center p-6">              
-                <h3 className="text-2xl font-bold mb-1">Vera</h3>
-                <p className="text-base text-gray-500 mb-2">Queen Mom</p>
-                <p className="text-gray-700">Our beautiful sphynx-mix, energetic and caring, brings unique charm and joy to our cattery.</p>
-              </div>
-            </div>
           </div>
-          <div className="text-center mt-10">
+             <div className="text-center mt-10">
             <Link href="/sphynxes" aria-label="View full gallery" className="btn-primary">
               Buy Kittens
             </Link>

@@ -1,6 +1,6 @@
 // app/sphynxes/page.tsx
 'use client';
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import Slider from "react-slick";
@@ -15,7 +15,6 @@ import ContactForm from "../components/ContactForm";
 
 type LooseCssProperties = React.CSSProperties & { [key: string]: string };
 
-
 const keywords = [
   /* …твой список ключевых слов… */
 ].join(", ");
@@ -27,9 +26,9 @@ const parents = [
     images: ["/images/bulochka/bulochka1.jpg" /* … */],
   },
   {
-    name: "Vera",
+    name: "Ofeliya",
     role: "Mom",
-    images: ["/images/vera/vera1.jpg" /* … */],
+    images: ["/images/afelia/afelia1.jpg" /* … */],
   },
 ];
 
@@ -210,27 +209,6 @@ export default function SphynxesPage() {
     adaptiveHeight: true,
   };
 
-  const lightboxStyles: Record<string, LooseCssProperties> = {
-  // фон-оверлей (backdrop) — мягкий полупрозрачный бежевый
-  root: {
-    '--yarl-backdrop-background': 'rgba(248, 242, 235, 0.88)',
-  },
-  // убираем фон у контейнера самого изображения
-  container: {
-    backgroundColor: 'transparent',
-  },
-  // фон и паддинги для списка миниатюр
-  thumbnails: {
-    backgroundColor: 'transparent',
-    padding: '8px 0',
-  },
-  // у самих «коробочек» миниатюр убираем чёрный фон и тень
-  thumbnail: {
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    margin: '0 4px',
-  },
-};
   return (
     <div className="bg-[#fff8f3] min-h-screen font-sans text-[#3d2b1f]">
       <Head>
