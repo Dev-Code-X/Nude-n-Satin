@@ -155,7 +155,7 @@ const breedSections = [
   {
     id: 'health',
     title: 'Health',
-    img: "/images/Litter1/litter107.jpg",
+    img: "/images/Litter1/Litter107.jpg",
     content: (
       <>
         <p>

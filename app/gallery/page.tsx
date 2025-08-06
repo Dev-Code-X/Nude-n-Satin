@@ -143,7 +143,7 @@ const firstLitterBlock: GalleryBlock = {
   title: 'First Litter — Bullochka × Liliana',
   description: 'Born from Bullochka and Liliana, wonderful kittens.',
   media: Array.from({ length: 162 }, (_, i) => ({
-    src: `/images/Litter1/litter${i + 1}.jpg`,
+    src: `/images/Litter1/Litter${i + 1}.jpg`,
     type: 'img' as const,
   })),
 };
