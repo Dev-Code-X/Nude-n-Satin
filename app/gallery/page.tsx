@@ -140,8 +140,8 @@ const baseBlocks: GalleryBlock[] = [
 
 // === 1) Первый помёт с 162 фото ===
 const firstLitterBlock: GalleryBlock = {
-  title: 'First Litter — Bullochka × Ofelya',
-  description: 'Born from Bullochka and Ofelya, wonderful kittens.',
+  title: 'First Litter — Bullochka × Liliana',
+  description: 'Born from Bullochka and Liliana, wonderful kittens.',
   media: Array.from({ length: 162 }, (_, i) => ({
     src: `/images/Litter1/litter${i + 1}.jpg`,
     type: 'img' as const,
