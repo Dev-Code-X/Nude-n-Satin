@@ -13,12 +13,12 @@ export default function Footer() {
             Gallery
           </Link>
           <a
-            href="https://instagram.com/"
+            href="https://www.facebook.com/profile.php?id=61578072431552"
             target="_blank"
             rel="noopener noreferrer"
             className="no-underline hover:underline text-[#715f4a]"
           >
-            Instagram
+            Facebook
           </a>
         </nav>
       </div>

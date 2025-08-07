@@ -101,7 +101,7 @@ export default function Header({ isHome = false }: HeaderProps) {
           <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
             <img src="/icons/instagram.png" alt="Instagram" className="h-6 w-6 hover-glow" />
           </a>
-          <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener">
+          <a href="https://www.facebook.com/profile.php?id=61578072431552" aria-label="Facebook" target="_blank" rel="noopener">
             <img src="/icons/Facebook.png" alt="Facebook" className="h-6 w-6 hover-glow" />
           </a>
           <a href="https://tiktok.com/" aria-label="TikTok" target="_blank" rel="noopener">
