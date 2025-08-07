@@ -315,7 +315,7 @@ export default function SphynxesPage() {
                   setOpen(true);
                 }}
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">                  See more photos
                 </span>
               </div>
@@ -343,7 +343,7 @@ export default function SphynxesPage() {
                   setOpen(true);
                 }}
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">
                   See more photos
                 </span>
@@ -377,7 +377,7 @@ export default function SphynxesPage() {
                        alt={kitten.name}
                        className="rounded-lg object-cover w-full aspect-square opacity-100 group-hover:opacity-60 transition-opacity"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                         <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">                          See more photos
                         </span>
                       </div>
@@ -427,7 +427,7 @@ export default function SphynxesPage() {
                   setOpen(true);
                 }}
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">
                   See more photos
                 </span>
@@ -456,7 +456,7 @@ export default function SphynxesPage() {
                   setOpen(true);
                 }}
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">
                   See more photos
                 </span>
@@ -490,7 +490,7 @@ export default function SphynxesPage() {
                         alt={kitten.name}
                         className="rounded-lg object-cover w-full aspect-square opacity-100 group-hover:opacity-60 transition-opacity"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                         <span className="bg-[#be915b] bg-opacity-70 text-[#3d2b1f] text-sm px-2 py-1 rounded">
                           See more photos
                         </span>
