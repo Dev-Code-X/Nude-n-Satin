@@ -202,7 +202,7 @@ const breedSections = [
             src={t.img}
             alt={t.title}
            className="
-           w-full h-auto                 /* мобилка: картинка по ширине */
+           w-full h-auto max-h-80                /* мобилка: картинка по ширине */
            sm:w-auto                      /* десктоп: ширина под высоту */
            sm:h-72 sm:max-h-[400px]       /* десктоп: высота ~18rem (или до 400px) */
            object-cover                   /* заполнение без искажения */
@@ -299,22 +299,22 @@ export default function BreedInfo() {
 
         {/* Active section */}
         <section className="mb-12">
-  <div className="flex flex-col md:flex-row gap-6 items-center">
+  <div className="flex flex-col md:flex-row gap-6 items-center w-full">
     {breedSections[tab].img && (
       <img
         src={breedSections[tab].img}
         alt={breedSections[tab].title}
        className="
        rounded-2xl
-       w-full h-auto                 /* мобилка: по ширине */
-       md:w-auto                      /* десктоп: ширина под высоту */
-       md:h-72 md:max-h-[400px]       /* десктоп: фиксированная высота */
-       object-cover                   /* заполнение */
+       w-full h-auto max-h-80        /* мобилка: картинка не выше 20rem */
+       md:w-auto                    /* десктоп: ширина под высоту */
+       md:h-72 md:max-h-[400px]     /* десктоп: фиксированная высота */
+       object-cover                 /* заполнение */
        mb-4 md:mb-0
        "        style={tab % 2 ? { order: 2 } : {}}
       />
     )}
-    <div className="flex-1">
+    <div className="flex-1 w-full">
       <h2 className="text-2xl font-bold mb-2">{breedSections[tab].title}</h2>
       <div className="text-lg leading-relaxed">{breedSections[tab].content}</div>
     </div>
