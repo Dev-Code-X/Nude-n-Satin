@@ -12,23 +12,96 @@ import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import ContactForm from "../components/ContactForm";
+import type { Slide } from 'yet-another-react-lightbox';
 
 const keywords = [
   /* …твой список ключевых слов… */
 ].join(", ");
 
+interface MediaItem {
+  src: string;
+  type: 'img' | 'video';
+  poster?: string;
+  objectPosition?: string;
+}
+
+const mediaToSlides = (media: MediaItem[]): Slide[] =>
+  media.map(item =>
+    item.type === 'img'
+      ? { src: item.src }
+      : {
+          type: 'video',
+          sources: [{ src: item.src, type: 'video/mp4' }],
+          poster: item.poster,
+        }
+  );
+
+const bullochkaMedia: MediaItem[] = [
+  { src: '/images/bulochka/bulochka1.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka2.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka3.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka4.mp4', type: 'video', poster: '/images/bulochka/bulochka44.jpg' },
+  { src: '/images/bulochka/bulochka5.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka6.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka7.jpeg', type: 'img' },
+  { src: '/images/bulochka/bulochka8.mp4', type: 'video', poster: '/images/bulochka/bulochka88.jpg' },
+  { src: '/images/bulochka/bulochka9.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka10.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka11.jpg', type: 'img' },
+  { src: '/images/bulochka/bulochka12.mp4', type: 'video', poster: '/images/bulochka/bulochka1212.jpg' },
+  { src: '/images/bulochka/bulochka13.mp4', type: 'video', poster: '/images/bulochka/bulochka1313.jpg' },
+  { src: '/images/bulochka/bulochka14.mp4', type: 'video', poster: '/images/bulochka/bulochka1414.jpg' },
+  { src: '/images/bulochka/bulochka15.mp4', type: 'video', poster: '/images/bulochka/bulochka1515.jpg' },
+  { src: '/images/bulochka/bulochka16.mp4', type: 'video', poster: '/images/bulochka/bulochka1616.jpg' },
+];
+
+const lilianaMedia: MediaItem[] = [
+  { src: '/images/liliana/liliana1.jpg', type: 'img' },
+  { src: '/images/liliana/liliana2.jpg', type: 'img' },
+  { src: '/images/liliana/liliana3.jpg', type: 'img' },
+  { src: '/images/liliana/liliana4.jpg', type: 'img' },
+  { src: '/images/liliana/liliana5.jpg', type: 'img' },
+  { src: '/images/liliana/liliana6.jpg', type: 'img' },
+  { src: '/images/liliana/liliana7.jpg', type: 'img' },
+  { src: '/images/liliana/liliana8.mp4', type: 'video', poster: '/images/liliana/liliana88.jpg' },
+  { src: '/images/liliana/liliana9.mp4', type: 'video', poster: '/images/liliana/liliana99.jpg' },
+  { src: '/images/liliana/liliana10.mp4', type: 'video', poster: '/images/liliana/liliana1010.jpg' },
+  { src: '/images/liliana/liliana11.mp4', type: 'video', poster: '/images/liliana/liliana1111.jpg' },
+  { src: '/images/liliana/liliana12.mp4', type: 'video', poster: '/images/liliana/liliana1212.jpg' },
+];
+
+const afeliyaMedia: MediaItem[] = [
+  { src: '/images/afelia/afelia1.jpg', type: 'img' },
+  { src: '/images/afelia/afelia2.jpg', type: 'img' },
+  { src: '/images/afelia/afelia3.jpg', type: 'img' },
+  { src: '/images/afelia/afelia4.jpg', type: 'img' },
+  { src: '/images/afelia/afelia5.jpg', type: 'img' },
+  { src: '/images/afelia/afelia6.jpg', type: 'img' },
+  { src: '/images/afelia/afelia7.jpg', type: 'img' },
+  { src: '/images/afelia/afelia8.jpg', type: 'img' },
+  { src: '/images/afelia/afelia9.jpg', type: 'img' },
+  { src: '/images/afelia/afelia10.jpg', type: 'img' },
+  { src: '/images/afelia/afelia11.jpg', type: 'img' },
+  { src: '/images/afelia/afelia12.jpg', type: 'img' },
+  { src: '/images/afelia/afelia13.jpg', type: 'img' },
+  { src: '/images/afelia/afelia14.jpg', type: 'img' },
+  { src: '/images/afelia/afelia15.mp4', type: 'video', poster: '/images/afelia/afelia1515.jpg' },
+  { src: '/images/afelia/afelia16.mp4', type: 'video', poster: '/images/afelia/afelia1616.jpg' },
+  { src: '/images/afelia/afelia17.jpg', type: 'img' },
+  { src: '/images/afelia/afelia18.jpg', type: 'img' },
+  { src: '/images/afelia/afelia19.mp4', type: 'video', poster: '/images/afelia/afelia1919.jpg' },
+];
+
 const parents = [
   {
-    name: "Bulochka",
-    role: "Dad",
-    images: ["/images/bulochka/bulochka1.jpg" /* … */],
+    name: 'Bulochka',
+    role: 'Dad',
+    media: bullochkaMedia,
   },
   {
-    name: "Liliana",
-    role: "Mom",
-    images: ["/images/liliana/liliana1.jpg" 
-      
-    ],
+    name: 'Liliana',
+    role: 'Mom',
+    media: lilianaMedia,
   },
 ];
 
@@ -175,14 +248,14 @@ images: [
 ];
 const parents2 = [
   {
-    name: "Bulochka",
-    role: "Dad",
-    images: ["/images/bulochka/bulochka1.jpg" /* … */],
+    name: 'Bulochka',
+    role: 'Dad',
+    media: bullochkaMedia,
   },
   {
-    name: "Ofeliya",
-    role: "Mom",
-    images: ["/images/afelia/afelia1.jpg" /* … */],
+    name: 'Ofelya',
+    role: 'Mom',
+    media: afeliyaMedia,
   },
 ];
 
@@ -197,7 +270,7 @@ const kittens2 = [
 
 export default function SphynxesPage() {
   const [open, setOpen] = useState(false);
-  const [slides, setSlides] = useState<{ src: string }[]>([]);
+  const [slides, setSlides] = useState<Slide[]>([]);
   const [index, setIndex] = useState(0);
 
   const sliderSettings = {
@@ -233,11 +306,11 @@ export default function SphynxesPage() {
             {/* Dad */}
             <div className="relative group w-52 transition-transform duration-200 hover:scale-105">
               <img
-                src={parents[0].images[0]}
+                src={parents[0].media[0].src}
                 alt={parents[0].name}
                 className="rounded-lg object-cover w-full h-56 opacity-100 group-hover:opacity-60 transition-opacity cursor-pointer"
                 onClick={() => {
-                  setSlides(parents[0].images.map((src) => ({ src })));
+                  setSlides(mediaToSlides(parents[0].media));
                   setIndex(0);
                   setOpen(true);
                 }}
@@ -261,11 +334,11 @@ export default function SphynxesPage() {
             {/* Mom */}
             <div className="relative group w-52 transition-transform duration-200 hover:scale-105">
               <img
-                src={parents[1].images[0]}
+                src={parents[1].media[0].src}
                 alt={parents[1].name}
                 className="rounded-lg object-cover w-full h-56 opacity-100 group-hover:opacity-60 transition-opacity cursor-pointer"
                 onClick={() => {
-                  setSlides(parents[1].images.map((src) => ({ src })));
+                  setSlides(mediaToSlides(parents[1].media));
                   setIndex(0);
                   setOpen(true);
                 }}
@@ -345,11 +418,11 @@ export default function SphynxesPage() {
             {/* Dad */}
             <div className="relative group w-52 transition-transform duration-200 hover:scale-105">
               <img
-                src={parents2[0].images[0]}
+                src={parents2[0].media[0].src}
                 alt={parents2[0].name}
                 className="rounded-lg object-cover w-full h-56 opacity-100 group-hover:opacity-60 transition-opacity cursor-pointer"
                 onClick={() => {
-                  setSlides(parents2[0].images.map((src) => ({ src })));
+                  setSlides(mediaToSlides(parents2[0].media));
                   setIndex(0);
                   setOpen(true);
                 }}
@@ -374,11 +447,11 @@ export default function SphynxesPage() {
             {/* Mom */}
             <div className="relative group w-52 transition-transform duration-200 hover:scale-105">
               <img
-                src={parents2[1].images[0]}
+                src={parents2[1].media[0].src}
                 alt={parents2[1].name}
                 className="rounded-lg object-cover w-full h-56 opacity-100 group-hover:opacity-60 transition-opacity cursor-pointer"
                 onClick={() => {
-                  setSlides(parents2[1].images.map((src) => ({ src })));
+                  setSlides(mediaToSlides(parents2[1].media));
                   setIndex(0);
                   setOpen(true);
                 }}

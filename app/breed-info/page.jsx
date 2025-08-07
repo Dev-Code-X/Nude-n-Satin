@@ -120,7 +120,7 @@ const breedSections = [
   {
     id: 'care',
     title: 'Care',
-    img: "/images/liliana/liliana1.jpg",
+    img: "/images/Litter1/litter77.jpg",
     content: (
       <>
         <p>
@@ -155,7 +155,7 @@ const breedSections = [
   {
     id: 'health',
     title: 'Health',
-    img: "/images/Litter1/Litter107.jpg",
+    img: "/images/Litter1/litter107.jpg",
     content: (
       <>
         <p>
@@ -201,8 +201,14 @@ const breedSections = [
             <img              
             src={t.img}
             alt={t.title}
-            className="w-32 h-32 object-contain rounded-xl mb-3 sm:mb-0 sm:mr-6 border border-[#ebdbca] shadow-sm"
-            />
+           className="
+           w-full h-auto                 /* мобилка: картинка по ширине */
+           sm:w-auto                      /* десктоп: ширина под высоту */
+           sm:h-72 sm:max-h-[400px]       /* десктоп: высота ~18rem (или до 400px) */
+           object-cover                   /* заполнение без искажения */
+           rounded-xl mb-3 sm:mb-0 sm:mr-6
+           border border-[#ebdbca] shadow-sm
+           "            />
             <div>
               <div className="font-bold text-lg mb-1 text-[#ac824e]">{t.title}</div>
               <div className="text-base">{t.desc}</div>
@@ -298,8 +304,14 @@ export default function BreedInfo() {
       <img
         src={breedSections[tab].img}
         alt={breedSections[tab].title}
-        className="rounded-2xl object-contain w-full md:w-72 h-auto md:max-h-99 mb-4 md:mb-0"
-        style={tab % 2 ? { order: 2 } : {}}
+       className="
+       rounded-2xl
+       w-full h-auto                 /* мобилка: по ширине */
+       md:w-auto                      /* десктоп: ширина под высоту */
+       md:h-72 md:max-h-[400px]       /* десктоп: фиксированная высота */
+       object-cover                   /* заполнение */
+       mb-4 md:mb-0
+       "        style={tab % 2 ? { order: 2 } : {}}
       />
     )}
     <div className="flex-1">
